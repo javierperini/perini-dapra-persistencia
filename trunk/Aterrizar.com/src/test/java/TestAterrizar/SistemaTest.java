@@ -77,14 +77,14 @@ public class SistemaTest {
 	@Test 
 	public void testValidarCuentaConElCodigoDeValidacion() throws Exception{
 		this.sistema.registrar(lcuelgue);
-		this.sistema.validarCuenta("1");
+		this.sistema.validarCuenta(lcuelgue.getNombreUsuario());
 		Connection conn = null;
 		PreparedStatement ps = null;
 		boolean validado=false;
 		try{
 			conn = this.getConnection();
-			ps = conn.prepareStatement("SELECT (VALIDADO,CODIGO_VALIDACION) FROM Aterrizar WHERE CODIGO_VALIDACION = ?");
-			ps.setString(1,"1");
+			ps = conn.prepareStatement("SELECT (VALIDADO) FROM Aterrizar WHERE CODIGO_VALIDACION = ?");
+			ps.setString(1,"Colguetti");
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){
 				validado = rs.getBoolean("VALIDADO");
@@ -105,10 +105,11 @@ public class SistemaTest {
 		this.sistema.validarCuenta("3");
 	}
 	
-	/*
 	@Test
 	public void testIngresarUsuarioResgistrado() throws UsuarioNoExiste, Exception{
-		 this.sistema.ingresarUsuario(lcuelgue,"AAAA");
+		
+		this.sistema.registrar(lcuelgue);
+		this.sistema.ingresarUsuario(lcuelgue,"1");
 		Connection conn = null;
 		PreparedStatement ps = null;
 		boolean conectado=false;
@@ -117,11 +118,9 @@ public class SistemaTest {
 			ps = conn.prepareStatement("SELECT CONECTADO FROM Aterrizar WHERE NOMBRE_USUARIO= ?");
 			ps.setString(1,"Colguetti");
 			ResultSet rs = ps.executeQuery();
-			// modificar
 			while(rs.next()){
 			conectado = rs.getBoolean("CONECTADO");
-			 assertTrue(conectado);
-			}
+			 }
 			ps.close();
 		}finally{
 			if(ps != null)
@@ -129,13 +128,14 @@ public class SistemaTest {
 			if(conn != null)
 				conn.close();
 		}
+		assertTrue(conectado);
 	}
 	
 	@Test   (expected=UsuarioNoExiste.class)
 	public void testIngresoElusuarioYNoExisteEnElSistema() throws Exception,UsuarioNoExiste{
 		this.sistema.ingresarUsuario(lcuelgue,"2222");
 	}
-	*/
+	
 	
 	
 	private Connection getConnection() throws Exception {

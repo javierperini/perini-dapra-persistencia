@@ -38,6 +38,11 @@ public class Usuario {
 		return fecha;
 	}
 
+	public CorreoElectronico getCorreo() {
+		
+		return email;
+	}
+
 	
 
 }

@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
 
@@ -47,20 +48,10 @@ public class Conector {
 			ps.close();
 			
 		}finally{
-			if(ps != null)
-				ps.close();
-			if(conn != null)
-				conn.close();
+			cerrarConexion();
 			}
-	
 	}
-	
-	
-	private Connection getConnection() throws Exception {
-		Class.forName("com.mysql.jdbc.Driver");
-		return DriverManager.getConnection("jdbc:mysql://localhost/Epers_Ej1","root","root");
-	}
-	
+
 	public String seleccionar(List<String> campos, String tabla, String condicion, String valorBuscado) throws Exception{
 		
 		String nombre = "";
@@ -84,11 +75,8 @@ public class Conector {
 			}
 			ps.close();
 		}finally{
-			if(ps != null)
-				ps.close();
-			if(conn != null)
-				conn.close();
-		}
+			cerrarConexion();
+			}
 		return nombre ;
 	}
 
@@ -97,28 +85,33 @@ public class Conector {
 			conn = this.getConnection();
 		ps = conn.prepareStatement(" DELETE FROM Aterrizar");
 		ps.execute();
-	}finally{
-		if(ps != null)
-			ps.close();
-		if(conn != null)
-			conn.close();
-	}
-		
-	}
+		}finally{
+			cerrarConexion();
+			}
+		}
 
 	public void modificar(String tabla, String columna,String valorCol,String campo, String codigo) throws Exception {
 		try{
 		conn= this.getConnection();
-		ps = conn.prepareStatement("UPDATE " + tabla +" SET"+ columna + " = " + valorCol+ "WHERE"+ campo+ "=" + codigo);
+		ps = conn.prepareStatement("UPDATE " + tabla +" SET "+ columna + " = " + valorCol + " WHERE "+ campo + " = '" + codigo +"'");
 		ps.execute();
 		ps.close();
-	}finally{
+		}finally{
+			cerrarConexion();
+			}
+	}
+	
+	private void cerrarConexion() throws SQLException {
 		if(ps != null)
 			ps.close();
 		if(conn != null)
 			conn.close();
 	}
-
+	
+	private Connection getConnection() throws Exception {
+		Class.forName("com.mysql.jdbc.Driver");
+		return DriverManager.getConnection("jdbc:mysql://localhost/Epers_Ej1","root","root");
 	}
 }	
+
 
