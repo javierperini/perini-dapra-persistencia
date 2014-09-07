@@ -1,5 +1,6 @@
 package Aterrizar;
 
+@SuppressWarnings("serial")
 public class ValidacionException extends Exception {
 		
 

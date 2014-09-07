@@ -21,8 +21,8 @@ public class Conector {
 		
 	}
 	
-	public void insertar(String tabla, List<String> columnas, Object... valores) throws Exception
-	{
+	public void insertar(String tabla, List<String> columnas, Object... valores) throws Exception{
+		
 		try{
 			StringBuffer stringBuffer = new StringBuffer(tabla + " ( ");
 					
@@ -71,7 +71,7 @@ public class Conector {
 			ResultSet rs = ps.executeQuery();
 			
 			while(rs.next()){
-				nombre = rs.getString(condicion);
+				nombre = rs.getString(1);
 			}
 			ps.close();
 		}finally{

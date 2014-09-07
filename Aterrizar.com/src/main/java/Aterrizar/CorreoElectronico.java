@@ -1,6 +1,5 @@
 package Aterrizar;
 
-import java.awt.List;
 import java.util.ArrayList;
 
 public class CorreoElectronico {
@@ -18,6 +17,12 @@ public class CorreoElectronico {
 		return this.nombre;
 	}
 	
-	public void recibirEmail(Mail m){}
+	public void recibirEmail(Mail m){
+		correos.add(m);
+
+	}
+	public ArrayList<Mail> leerCorreo(){
+		return this.correos;
+	}
 
 }
