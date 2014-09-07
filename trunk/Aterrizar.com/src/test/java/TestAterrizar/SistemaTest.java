@@ -1,14 +1,12 @@
 package TestAterrizar;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
-
-import junit.framework.Assert;
 
 import org.junit.After;
 import org.junit.Before;
@@ -29,7 +27,7 @@ public class SistemaTest {
 	Sistema sistema;
 	Usuario lcuelgue;
 	Conector conector;
-	private Usuario lcuelgue2;
+
 	
 	
 	@Before
@@ -37,10 +35,9 @@ public class SistemaTest {
 		
 		conector = new Conector();
 		this.sistema = new Sistema(new EnviadorDeMail(), conector);
-		//Usuario pepe = new Usuario("Pepito", "Pepe", "Sanchez");
 		CorreoElectronico correo= new CorreoElectronico("lala");
 		this.lcuelgue = new Usuario("Colguetti", "Luciano", "Olmedo",correo,12356);
-		this.lcuelgue2 = new Usuario("Hola", "Luciano", "Olmedo",correo,12356);
+		
 	}
 
 	@Test
@@ -52,7 +49,7 @@ public class SistemaTest {
 		String nombreUsuario=" ";
 		try{
 			conn = this.getConnection();
-			ps = conn.prepareStatement("SELECT NOMBRE_USUARIO FROM Aterrizar WHERE NOMBRE_USUARIO = ?");
+			ps = conn.prepareStatement("SELECT NOMBRE_USUARIO FROM aterrizar WHERE NOMBRE_USUARIO = ?");
 			ps.setString(1,"Colguetti");
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){
@@ -74,6 +71,7 @@ public class SistemaTest {
 		this.sistema.registrar(lcuelgue);
 		this.sistema.registrar(lcuelgue);
 	}
+	
 	@Test 
 	public void testValidarCuentaConElCodigoDeValidacion() throws Exception{
 		this.sistema.registrar(lcuelgue);
@@ -83,7 +81,7 @@ public class SistemaTest {
 		boolean validado=false;
 		try{
 			conn = this.getConnection();
-			ps = conn.prepareStatement("SELECT (VALIDADO) FROM Aterrizar WHERE CODIGO_VALIDACION = ?");
+			ps = conn.prepareStatement("SELECT (VALIDADO) FROM aterrizar WHERE CODIGO_VALIDACION = ?");
 			ps.setString(1,"Colguetti");
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){
@@ -115,7 +113,7 @@ public class SistemaTest {
 		boolean conectado=false;
 		try{
 			conn = this.getConnection();
-			ps = conn.prepareStatement("SELECT CONECTADO FROM Aterrizar WHERE NOMBRE_USUARIO= ?");
+			ps = conn.prepareStatement("SELECT CONECTADO FROM aterrizar WHERE NOMBRE_USUARIO= ?");
 			ps.setString(1,"Colguetti");
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){
