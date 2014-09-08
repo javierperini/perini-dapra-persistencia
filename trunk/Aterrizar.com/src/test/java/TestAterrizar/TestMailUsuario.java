@@ -56,7 +56,7 @@ public class TestMailUsuario {
 	
 	@After
 	public void limpiarTabla() throws Exception{
-		this.conector.limpiarTabla();
+		this.conector.limpiarTabla("Aterrizar");
 	}
 
 }
