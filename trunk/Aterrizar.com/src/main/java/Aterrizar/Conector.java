@@ -146,7 +146,7 @@ public class Conector {
 	
 	private Connection getConnection() throws Exception {
 		Class.forName("com.mysql.jdbc.Driver");
-		return DriverManager.getConnection("jdbc:mysql://localhost/Epers_Ej1","root","root");
+		return DriverManager.getConnection("jdbc:mysql://localhost/epers_ej1","persistencia","persistencia");
 	}
 }	
 
