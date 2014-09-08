@@ -135,7 +135,6 @@ public class SistemaTest {
 	}
 	
 	
-	
 	private Connection getConnection() throws Exception {
 		Class.forName("com.mysql.jdbc.Driver");
 		return DriverManager.getConnection("jdbc:mysql://localhost/Epers_Ej1","root","root");
@@ -143,7 +142,9 @@ public class SistemaTest {
 	
 	@After
 	public void limpiarTabla() throws Exception{
-		this.conector.limpiarTabla("Aterrizar");
+
+		 this.conector.limpiarTabla("Aterrizar");
+
 	}
 	
 }
