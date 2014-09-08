@@ -108,10 +108,10 @@ public class Conector {
 	 * La usamos para poder borrar todos los datos de una tabla
 	 * @throws Exception
 	 */
-	public void limpiarTabla() throws Exception {
+	public void limpiarTabla(String tabla) throws Exception {
 		try {
 			conn = this.getConnection();
-		ps = conn.prepareStatement(" DELETE FROM Aterrizar");
+		ps = conn.prepareStatement(" DELETE FROM " + tabla);
 		ps.execute();
 		}finally{
 			cerrarConexion();
