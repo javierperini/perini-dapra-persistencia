@@ -2,6 +2,7 @@ package TestAterrizar;
 
 import static org.junit.Assert.*;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -53,5 +54,9 @@ public class TestMailUsuario {
 		assertEquals(1,correo.leerCorreo().size());
 	}
 	
+	@After
+	public void limpiarTabla() throws Exception{
+		this.conector.limpiarTabla();
+	}
 
 }
