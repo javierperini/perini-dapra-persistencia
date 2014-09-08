@@ -13,6 +13,13 @@ public class Conector {
 
 	Connection conn;
 	PreparedStatement ps;
+	
+	/*
+	 * La clase conector la usamos como template para hacer
+	 * consultas del estilo CRUD como ademas brindar opciones
+	 * para limpiar la tabla y cerrar la conexion.
+	 * Seria una implementacion de un DAO.
+	 */
 
 	public Conector(){
 		
@@ -20,7 +27,14 @@ public class Conector {
 		this.ps = null;
 		
 	}
-	
+	/**
+	 * 
+	 * @param tabla es la tabla a la cual le quiero hacer inserciones
+	 * @param columnas son las columnas de la tabla en cuestion a las cuales le 
+	 * quiero agregar los valores en cuestion
+	 * @param valores son los valores que deseo ingresar en la tabla
+	 * @throws Exception
+	 */
 	public void insertar(String tabla, List<String> columnas, Object... valores) throws Exception{
 		
 		try{
@@ -52,6 +66,16 @@ public class Conector {
 			}
 	}
 
+	/**
+	 * 
+	 * @param campos son los campos de interes que quiero seleccionar de una tabla, 
+	 * @param tabla es la tabla en cuestion
+	 * @param condicion es el criterio bajo el cual quiero hacer la seleccion de campos
+	 * @param valorBuscado aporta para la busqueda bajo la condicion requerida
+	 * @return los campos de la tabla los cuales cumplen con el valor buscado
+	 * bajo la condicion requerida
+	 * @throws Exception
+	 */
 	public String seleccionar(List<String> campos, String tabla, String condicion, String valorBuscado) throws Exception{
 		
 		String nombre = "";
@@ -80,6 +104,10 @@ public class Conector {
 		return nombre ;
 	}
 
+	/**
+	 * La usamos para poder borrar todos los datos de una tabla
+	 * @throws Exception
+	 */
 	public void limpiarTabla() throws Exception {
 		try {
 			conn = this.getConnection();
@@ -89,7 +117,15 @@ public class Conector {
 			cerrarConexion();
 			}
 		}
-
+	/**
+	 * @param tabla es la tabla a la cual le quiero hacer modificaciones
+	 * @param columnas son las columnas de la tabla en cuestion a las cuales le 
+	 * quiero agregar los valores en cuestion
+	 * @param valorCol son los valores que deseo ingresar en la tabla
+	 * @param campo bajo el cual se aplica la modificacion
+	 * @param codigo que debe ser igual a nivel instancia al campo
+	 * @throws Exception
+	 */
 	public void modificar(String tabla, String columna,String valorCol,String campo, String codigo) throws Exception {
 		try{
 		conn= this.getConnection();
