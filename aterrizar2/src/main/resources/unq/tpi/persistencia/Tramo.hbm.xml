@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+ 
+<hibernate-mapping>
+    <class name="unq.tpi.persistencia.Jugador" table="TRAMO" >
+        <id name="id" type="java.lang.Integer">
+            <column name="T_ID" />
+            <generator class="identity" />
+        </id>
+
+        <property name="origen" type="string">
+            <column name="T_ORIGEN" length="20" not-null="true" unique="false" />
+        </property>
+                
+        <property name="destino" type="string">
+            <column name="T_DESTINO" length="20" not-null="true" unique="false" />
+        </property>
+        <property name="horaSalida" type="int">
+            <column name="T_HORASALIDA" not-null="false" unique="false"/>
+        </property>
+        <property name="horaLlegada" type="int">
+            <column name="T_HORALLEGADA" not-null="false" unique="false"/>
+        </property>
+        
+        <property name="precio" type="int">
+            <column name="T_PRECIO" not-null="false" unique="false"/>
+        </property>
+        
+    </class>
+</hibernate-mapping>
