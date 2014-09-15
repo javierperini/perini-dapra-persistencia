@@ -10,6 +10,14 @@ public class Asiento extends Entidad {
 	Usuario reservadoPor;
 	
 	
+	public Usuario getReservadoPor() {
+		return reservadoPor;
+	}
+
+	public void setReservadoPor(Usuario reservadoPor) {
+		this.reservadoPor = reservadoPor;
+	}
+
 	protected Asiento() {
 	}
 	
@@ -43,6 +51,11 @@ public class Asiento extends Entidad {
 
 	public void setCompradoPor(Usuario cliente) {
 		this.compradoPor = cliente;
+	}
+
+	public void reservarPor(Usuario unUsuario) {
+		this.setEstaReservado(true);
+		this.setReservadoPor(unUsuario);
 	}
 
 	
