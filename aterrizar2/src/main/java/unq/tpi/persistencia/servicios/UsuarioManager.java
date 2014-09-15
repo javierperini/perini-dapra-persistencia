@@ -4,7 +4,7 @@ import unq.tpi.persistencia.Usuario;
 import unq.tpi.persistencia.daos.SessionManager;
 
 public class UsuarioManager {
-	public Usuario consultarJugador(int id) {
+	public Usuario consultarUsuario(int id) {
 		return SessionManager.runInSession(new ConsultarUsuario(id));
 	}
 
