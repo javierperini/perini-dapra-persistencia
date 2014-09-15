@@ -2,7 +2,7 @@ package unq.tpi.persistencia;
 
 import java.util.List;
 
-public class Tramo {
+public class Tramo extends Entidad{
 	private String origen;
 	private String destino;
 	private int precio;
@@ -24,14 +24,6 @@ public class Tramo {
 		this.horaLlegada = horaLlegada;
 		this.horaSalida = horaSalida;
 		this.setAsientos(asientos);
-	}
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
 	}
 	
 	public Integer getPrecio() {

@@ -2,10 +2,10 @@ package unq.tpi.persistencia;
 
 import java.util.List;
 
-public class Aerolinea {
+public class Aerolinea extends Entidad{
 	private String nombre;
 	private List<Vuelo> unosVuelos;
-	private Integer id;
+	
 
 	/**
 	 * Es exclusivo para Hibernate no usar 
@@ -17,15 +17,6 @@ public class Aerolinea {
 		this.nombre = nombre;
 		this.setUnosVuelos(unosVuelos);
 	}
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-	
 	
 	public String getNombre() {
 		return nombre;
