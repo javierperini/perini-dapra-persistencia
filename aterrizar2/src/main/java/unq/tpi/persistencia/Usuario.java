@@ -1,8 +1,7 @@
 package unq.tpi.persistencia;
 
-public class Usuario {
+public class Usuario extends Entidad{
 	
-	private int id;
 	private String nombre;
 
 	public Usuario(String nombre){
@@ -17,8 +16,5 @@ public class Usuario {
 		this.nombre = nombre;
 	}
 
-	public int getId() {
-		return id;
-	}
 
 }

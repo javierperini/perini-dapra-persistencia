@@ -1,6 +1,6 @@
 package unq.tpi.persistencia;
 
-public class Categoria {
+public class Categoria extends Entidad{
 	private int precio;
 
 	protected Categoria() {

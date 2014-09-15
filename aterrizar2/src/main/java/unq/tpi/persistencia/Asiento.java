@@ -1,8 +1,8 @@
 package unq.tpi.persistencia;
 
 
-public class Asiento {
-	int id;
+public class Asiento extends Entidad {
+	
 	int nro;
 	Categoria unaCategoria;
 	Usuario cliente;
