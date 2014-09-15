@@ -4,6 +4,9 @@ public class Usuario extends Entidad{
 	
 	private String nombre;
 
+	protected Usuario(){
+	}
+	
 	public Usuario(String nombre){
 		this.setNombre(nombre);
 	}

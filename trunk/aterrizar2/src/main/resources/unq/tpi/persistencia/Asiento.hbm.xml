@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
  
 <hibernate-mapping>
-    <class name="unq.tpi.persistencia.Jugador" table="ASIENTO" >
+    <class name="unq.tpi.persistencia.Asiento" table="ASIENTO" >
         <id name="id" type="java.lang.Integer">
             <column name="S_ID" />
             <generator class="identity" />

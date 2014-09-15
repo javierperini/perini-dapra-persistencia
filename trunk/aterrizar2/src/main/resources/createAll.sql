@@ -5,7 +5,7 @@ USE Epers_EjHibernate;
 
 CREATE TABLE  `Epers_EjHibernate`.`Usuario` (
   `U_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `U_NOMBRE` varchar(20) NOT NULL,
+  `U_NOMBRE` varchar(20) NOT NULL unique,
   PRIMARY KEY (`U_ID`)
 ) ENGINE = InnoDB AUTO_INCREMENT=1;
 
