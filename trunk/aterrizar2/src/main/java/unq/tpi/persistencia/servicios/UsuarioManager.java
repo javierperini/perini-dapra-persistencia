@@ -8,8 +8,8 @@ public class UsuarioManager {
 		return SessionManager.runInSession(new ConsultarUsuario(id));
 	}
 
-	public void crearUsuario(String nombre) {
-		SessionManager.runInSession(new CrearUsuario(nombre));
+	public Usuario crearUsuario(String nombre) {
+		return SessionManager.runInSession(new CrearUsuario(nombre));
 	}
 
 	public Usuario modificarNombre(int id, String nombre) {
