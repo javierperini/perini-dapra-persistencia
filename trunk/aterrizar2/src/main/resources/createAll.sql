@@ -1,4 +1,4 @@
-- MySQL dump 10.13  Distrib 5.5.38, for debian-linux-gnu (x86_64)
+-- MySQL dump 10.13  Distrib 5.5.38, for debian-linux-gnu (x86_64)
 --
 -- Host: localhost    Database: Epers_EjHibernate
 -- ------------------------------------------------------
@@ -141,7 +141,7 @@ CREATE TABLE `Usuario` (
 
 LOCK TABLES `Usuario` WRITE;
 /*!40000 ALTER TABLE `Usuario` DISABLE KEYS */;
-INSERT INTO `Usuario` VALUES (12,'UnUsuario'),(13,'JuanCito'),(14,'UnUsuario'),(15,'UnUsuario'),(16,'UnUsuario'),(17,'usuario'),(18,'JuanCito'),(19,'usuario'),(20,'usuario'),(21,'usuario'),(22,'JuanCito'),(23,'usuario'),(24,'Juanca'),(25,'usuario'),(26,'JuanCito'),(27,'usuario'),(28,'Juanca');
+INSERT INTO `Usuario` VALUES (12,'UnUsuario');
 /*!40000 ALTER TABLE `Usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 

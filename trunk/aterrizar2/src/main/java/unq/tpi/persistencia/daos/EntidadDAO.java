@@ -8,10 +8,13 @@ public class EntidadDAO<T> {
 		this.entityType = entityType;
 	}
 	public T get(int id){
-		return (T)SessionManager.getSession().get(entityType,id);
+		return entityType.cast(SessionManager.getSession().get(entityType,id));
 	}
 
 	public void save(T e) {
 		SessionManager.getSession().saveOrUpdate(e);
+	}
+	public void delete(T e){
+		SessionManager.getSession().delete(e);
 	}
 }
