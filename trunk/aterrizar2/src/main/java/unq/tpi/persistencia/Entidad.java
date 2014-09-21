@@ -1,7 +1,9 @@
 package unq.tpi.persistencia;
 
+import java.math.BigDecimal;
+
 public class Entidad {
-	int id;
+	BigDecimal id;
 	
 	/**
 	 * Superclase entidad
@@ -11,11 +13,11 @@ public class Entidad {
 		
 	}
 	
-	public int getId(){
+	public BigDecimal getId(){
 		return id;
 	}
 	
-	public void setId(int i){
+	public void setId(BigDecimal i){
 		this.id=i;
 	}
 

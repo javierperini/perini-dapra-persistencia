@@ -1,7 +1,8 @@
-package unq.tpi.persistencia.servicios;
+package unq.tpi.persistencia.servicios.usuario;
 
 import unq.tpi.persistencia.Usuario;
 import unq.tpi.persistencia.daos.EntidadDAO;
+import unq.tpi.persistencia.servicios.Operation;
 
 public class CrearUsuario implements Operation<Usuario>{
 

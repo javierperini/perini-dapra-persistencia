@@ -12,6 +12,12 @@
         <property name="nombre" type="string">
             <column name="E_NOMBRE" length="20" not-null="true" unique="false" />
         </property>
+        
+        <list name="unasAerolineas" cascade="all-delete-orphan"> 
+            <key column="E_ID" /> 
+            <index column="ORDEN" /> 
+            <one-to-many class="unq.tpi.persistencia.Aerolinea" /> 
+        </list>  
 
     </class>
 </hibernate-mapping>

@@ -1,8 +1,9 @@
-package unq.tpi.persistencia;
+package unq.tpi.persistencia.usuarios;
 
-import unq.tpi.persistencia.servicios.ConsultarUsuario;
+import unq.tpi.persistencia.Usuario;
 import unq.tpi.persistencia.servicios.Manager;
 import unq.tpi.persistencia.servicios.UsuarioManager;
+import unq.tpi.persistencia.servicios.usuario.ConsultarUsuario;
 
 //public class ConsultarTest extends AbstractHibernateTest {
 public class ConsultarTest extends SetUpCliente{

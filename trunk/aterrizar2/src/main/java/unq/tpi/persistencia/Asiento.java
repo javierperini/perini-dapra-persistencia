@@ -8,8 +8,25 @@ public class Asiento extends Entidad {
 	Usuario compradoPor;
 	Boolean estaReservado;
 	Usuario reservadoPor;
+	private Tramo miTramo;
 	
-	
+		
+	public Categoria getUnaCategoria() {
+		return unaCategoria;
+	}
+
+	public void setUnaCategoria(Categoria unaCategoria) {
+		this.unaCategoria = unaCategoria;
+	}
+
+	public Tramo getMiTramo() {
+		return miTramo;
+	}
+
+	public void setMiTramo(Tramo miTramo) {
+		this.miTramo = miTramo;
+	}
+
 	public Usuario getReservadoPor() {
 		return reservadoPor;
 	}
@@ -21,8 +38,23 @@ public class Asiento extends Entidad {
 	protected Asiento() {
 	}
 	
-	public Asiento(int nro, Categoria unaCategoria){
+	public Asiento(int nro){
 		this.nro = nro;
+	}
+	
+	public Asiento(int nro, Tramo miTramo){
+		this.nro = nro;
+		this.miTramo = miTramo;
+	}
+	
+	public Asiento(int nro, Tramo miTramo, Categoria miCategoria){
+		this.nro = nro;
+		this.miTramo = miTramo;
+		this.unaCategoria = miCategoria;
+	}
+	
+	public void agregar(Categoria unaCategoria) {
+		this.unaCategoria = unaCategoria;
 	}
 	
 	public Boolean getEstaReservado() {
