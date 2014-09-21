@@ -1,14 +1,17 @@
-package unq.tpi.persistencia.servicios;
+package unq.tpi.persistencia.servicios.usuario;
+
+import java.math.BigDecimal;
 
 import unq.tpi.persistencia.Usuario;
 import unq.tpi.persistencia.daos.EntidadDAO;
+import unq.tpi.persistencia.servicios.Operation;
 
 public class ModificarUsuario implements Operation<Usuario> {
 
 	private String nombre;
-	private int id;
+	private BigDecimal id;
 
-	public ModificarUsuario(int id, String nombre) {
+	public ModificarUsuario(BigDecimal id, String nombre) {
 		super();
 		this.nombre = nombre;
 		this.id = id;

@@ -6,10 +6,10 @@ public class Tramo extends Entidad{
 	private String origen;
 	private String destino;
 	private int precio;
-	private Integer id;
 	private int horaLlegada;
 	private int horaSalida;
 	private List<Asiento> asientos;
+	private Vuelo miVuelo; 
 
 	/**
 	 * Es exclusivo para Hibernate no usar 
@@ -17,14 +17,34 @@ public class Tramo extends Entidad{
 	protected Tramo() {
 	}
 	
-	public Tramo(String origen, String destino, Integer precio, int horaLlegada, int horaSalida, List<Asiento> asientos){
+	public Tramo(String origen, String destino, Integer precio, int horaLlegada, int horaSalida){
 		this.origen = origen;
 		this.destino = destino;
 		this.precio = precio;
 		this.horaLlegada = horaLlegada;
 		this.horaSalida = horaSalida;
+	}
+	
+	public Tramo(String origen, String destino, Integer precio, int horaLlegada, int horaSalida, Vuelo miVuelo){
+		this.origen = origen;
+		this.destino = destino;
+		this.precio = precio;
+		this.horaLlegada = horaLlegada;
+		this.horaSalida = horaSalida;
+		this.miVuelo = miVuelo;
+	}
+	
+	public Tramo(String origen, String destino, Integer precio, 
+			int horaLlegada, int horaSalida, Vuelo miVuelo , List<Asiento> asientos){
+		this.origen = origen;
+		this.destino = destino;
+		this.precio = precio;
+		this.horaLlegada = horaLlegada;
+		this.horaSalida = horaSalida;
+		this.miVuelo = miVuelo;
 		this.setAsientos(asientos);
 	}
+	
 	
 	public Integer getPrecio() {
 		return precio;
@@ -32,6 +52,14 @@ public class Tramo extends Entidad{
 
 	public void setPrecio(Integer precio) {
 		this.precio = precio;
+	}
+
+	public Vuelo getMiVuelo() {
+		return miVuelo;
+	}
+
+	public void setMiVuelo(Vuelo miVuelo) {
+		this.miVuelo = miVuelo;
 	}
 
 	public String getOrigen() {
@@ -74,10 +102,21 @@ public class Tramo extends Entidad{
 		this.asientos = asientos;
 	}
 
+	public void agregarAsiento(Asiento asiento){
+		this.asientos.add(asiento);
+	}
 	@Override
 	public String toString() {
 		return "Tramo [origen=" + origen + ", destino=" + destino
 				+ ", precio=" + precio + ", id=" + id + "]";
+	}
+
+	public String getDestino() {
+		return destino;
+	}
+
+	public void setPrecio(int precio) {
+		this.precio = precio;
 	}
 	
 }

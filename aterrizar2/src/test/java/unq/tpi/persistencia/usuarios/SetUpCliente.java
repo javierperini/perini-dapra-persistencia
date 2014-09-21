@@ -1,7 +1,9 @@
-package unq.tpi.persistencia;
+package unq.tpi.persistencia.usuarios;
 
-import unq.tpi.persistencia.servicios.CrearUsuario;
+import unq.tpi.persistencia.AbstractHibernateTest;
+import unq.tpi.persistencia.Usuario;
 import unq.tpi.persistencia.servicios.Manager;
+import unq.tpi.persistencia.servicios.usuario.CrearUsuario;
 
 public abstract class SetUpCliente extends AbstractHibernateTest{
 	

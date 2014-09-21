@@ -1,20 +1,29 @@
 package unq.tpi.persistencia;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Aerolinea extends Entidad{
 	private String nombre;
-	private List<Vuelo> unosVuelos;
-	
+	private List<Vuelo> unosVuelos = new ArrayList <Vuelo>();
+	private Empresa empresaALaQuePertenece;
 
-	/**
-	 * Es exclusivo para Hibernate no usar 
-	 **/
+	
 	protected Aerolinea() {
 	}
 	
-	public Aerolinea(String nombre, List<Vuelo> unosVuelos){
+	public Aerolinea(String nombre){
 		this.nombre = nombre;
+	}
+	
+	public Aerolinea(String nombre, Empresa empresaALaQuePertenece){
+		this.nombre = nombre;
+		this.empresaALaQuePertenece = empresaALaQuePertenece;
+	}
+	
+	public Aerolinea(String nombre, Empresa empresaALaQuePertenece,List<Vuelo> unosVuelos){
+		this.nombre = nombre;
+		this.empresaALaQuePertenece = empresaALaQuePertenece;
 		this.setUnosVuelos(unosVuelos);
 	}
 	
@@ -25,7 +34,19 @@ public class Aerolinea extends Entidad{
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+	
+	public Empresa getEmpresaALaQuePertenece() {
+		return empresaALaQuePertenece;
+	}
 
+	public void setEmpresaALaQuePertenece(Empresa empresaALaQuePertenece) {
+		this.empresaALaQuePertenece = empresaALaQuePertenece;
+	}
+	
+	public void agregarVuelo(Vuelo v){
+		this.getUnosVuelos().add(v);
+	}
+	
 	public List<Vuelo> getUnosVuelos() {
 		return unosVuelos;
 	}

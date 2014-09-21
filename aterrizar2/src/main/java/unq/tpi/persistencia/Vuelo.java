@@ -5,25 +5,40 @@ import java.util.List;
 public class Vuelo extends Entidad {
 	private String nombre;
 	private List<Tramo> unosTramos;
-	
+	private Aerolinea miAerolinea;
 
-	/**
-	 * Es exclusivo para Hibernate no usar 
-	 **/
 	protected Vuelo() {
 	}
 	
-	public Vuelo(String nombre, List<Tramo> unosTramos){
+	public Vuelo(String nombre, Aerolinea miAerolinea){
 		this.nombre = nombre;
+		this.miAerolinea = miAerolinea;
+	}
+	
+	public Vuelo(String nombre, Aerolinea miAerolinea ,List<Tramo> unosTramos){
+		this.nombre = nombre;
+		this.miAerolinea = miAerolinea;
 		this.setUnosTramos(unosTramos);
 	}
 	
+	public Aerolinea getMiAerolinea() {
+		return miAerolinea;
+	}
+
+	public void setMiAerolinea(Aerolinea miAerolinea) {
+		this.miAerolinea = miAerolinea;
+	}
+
 	public String getNombre() {
 		return nombre;
 	}
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+	
+	public void agregar(Tramo t) {
+		this.unosTramos.add(t);
 	}
 
 	public List<Tramo> getUnosTramos() {

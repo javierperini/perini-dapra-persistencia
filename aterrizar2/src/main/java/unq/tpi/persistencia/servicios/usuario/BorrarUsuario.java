@@ -1,14 +1,17 @@
-package unq.tpi.persistencia.servicios;
+package unq.tpi.persistencia.servicios.usuario;
 
+
+import java.math.BigDecimal;
 
 import unq.tpi.persistencia.Usuario;
 import unq.tpi.persistencia.daos.EntidadDAO;
+import unq.tpi.persistencia.servicios.Operation;
 
 public class BorrarUsuario implements Operation<Usuario> {
 
-	private int id;
+	private BigDecimal id;
 	
-	public BorrarUsuario(int id) {
+	public BorrarUsuario(BigDecimal id) {
 		super();
 		this.id = id;
 	}

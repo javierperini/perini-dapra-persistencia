@@ -27,5 +27,15 @@
             <column name="T_PRECIO" not-null="false" unique="false"/>
         </property>
         
+        <list name="asientos" cascade="all-delete-orphan"> 
+            <key column="A_ID" /> 
+            <index column="ORDEN" /> 
+            <one-to-many class="unq.tpi.persistencia.Asiento" /> 
+        </list> 
+        
+         
+        
+        <many-to-one name="miVuelo" column="V_ID"  />
+        
     </class>
 </hibernate-mapping>

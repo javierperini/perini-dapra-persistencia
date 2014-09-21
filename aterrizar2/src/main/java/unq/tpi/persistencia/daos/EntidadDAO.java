@@ -1,5 +1,7 @@
 package unq.tpi.persistencia.daos;
 
+import java.math.BigDecimal;
+
 public class EntidadDAO<T> {
 	
 	private Class<T> entityType;
@@ -7,7 +9,7 @@ public class EntidadDAO<T> {
 	public EntidadDAO(Class<T> entityType) {
 		this.entityType = entityType;
 	}
-	public T get(int id){
+	public T get(BigDecimal id){
 		return entityType.cast(SessionManager.getSession().get(entityType,id));
 	}
 

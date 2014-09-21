@@ -12,6 +12,8 @@
         <property name="precioPorCategoria" type="string">
             <column name="S_CAT_PRECIO" length="20" not-null="true" unique="false" />
         </property>
+        
+        <many-to-one name="miTramo" column="T_ID"  />        
 
     </class>
 </hibernate-mapping>

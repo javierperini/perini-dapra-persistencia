@@ -12,6 +12,14 @@
         <property name="nombre" type="string">
             <column name="A_NOMBRE" length="20" not-null="true" unique="false" />
         </property>
+        
+        <list name="unosVuelos" cascade="all-delete-orphan"> 
+            <key column="A_ID" /> 
+            <index column="ORDEN" /> 
+            <one-to-many class="unq.tpi.persistencia.Vuelo" /> 
+        </list>  
+        
+        <many-to-one name="empresaALaQuePertenece" column="E_ID"  />
                 
     </class>
 </hibernate-mapping>
