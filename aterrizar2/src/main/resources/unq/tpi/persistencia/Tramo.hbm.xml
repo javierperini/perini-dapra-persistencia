@@ -3,39 +3,38 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
  
 <hibernate-mapping>
-    <class name="unq.tpi.persistencia.Tramo" table="TRAMO" >
+    <class name="unq.tpi.persistencia.Tramo" table="Tramo" >
         <id name="id" type="java.lang.Integer">
-            <column name="T_ID" />
+            <column name="idTramo" />
             <generator class="identity" />
         </id>
 
         <property name="origen" type="string">
-            <column name="T_ORIGEN" length="20" not-null="true" unique="false" />
+            <column name="origen" length="20" not-null="true" unique="false" />
         </property>
                 
         <property name="destino" type="string">
-            <column name="T_DESTINO" length="20" not-null="true" unique="false" />
+            <column name="destino" length="20" not-null="true" unique="false" />
         </property>
         <property name="horaSalida" type="int">
-            <column name="T_HORASALIDA" not-null="false" unique="false"/>
+            <column name="horaSalida" not-null="false" unique="false"/>
         </property>
         <property name="horaLlegada" type="int">
-            <column name="T_HORALLEGADA" not-null="false" unique="false"/>
+            <column name="horaLlegada" not-null="false" unique="false"/>
         </property>
         
         <property name="precio" type="int">
-            <column name="T_PRECIO" not-null="false" unique="false"/>
+            <column name="precioBase" not-null="false" unique="false"/>
         </property>
         
-        <list name="asientos" cascade="all-delete-orphan"> 
-            <key column="A_ID" /> 
-            <index column="ORDEN" /> 
+        <bag name="asientos" cascade="all-delete-orphan"> 
+            <key column="idAsiento" /> 
             <one-to-many class="unq.tpi.persistencia.Asiento" /> 
-        </list> 
+        </bag> 
         
          
         
-        <many-to-one name="miVuelo" column="V_ID"  />
+        <many-to-one name="miVuelo" column="idVuelo"  />
         
     </class>
 </hibernate-mapping>

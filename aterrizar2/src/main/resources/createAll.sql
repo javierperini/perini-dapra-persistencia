@@ -23,14 +23,14 @@ DROP TABLE IF EXISTS `Aerolinea`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Aerolinea` (
-  `A_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `A_NOMBRE` varchar(20) NOT NULL,
-  `A_IDE` int(11) NOT NULL,
-  PRIMARY KEY (`A_ID`),
-  UNIQUE KEY `A_NOMBRE` (`A_NOMBRE`),
-  KEY `A_IDE` (`A_IDE`),
-  CONSTRAINT `Aerolinea_ibfk_1` FOREIGN KEY (`A_IDE`) REFERENCES `Empresa` (`E_ID`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `idAerolinea` int(11) NOT NULL AUTO_INCREMENT,
+  `nombreAerolinea` varchar(40) NOT NULL,
+  `idEmpresa` int(11) NOT NULL,
+  PRIMARY KEY (`idAerolinea`),
+  UNIQUE KEY `A_NOMBRE` (`nombreAerolinea`),
+  KEY `A_IDE` (`idEmpresa`),
+  CONSTRAINT `Aerolinea_ibfk_1` FOREIGN KEY (`idEmpresa`) REFERENCES `Empresa` (`E_ID`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -39,6 +39,7 @@ CREATE TABLE `Aerolinea` (
 
 LOCK TABLES `Aerolinea` WRITE;
 /*!40000 ALTER TABLE `Aerolinea` DISABLE KEYS */;
+INSERT INTO `Aerolinea` VALUES (2,'unNombreA',2);
 /*!40000 ALTER TABLE `Aerolinea` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -50,12 +51,12 @@ DROP TABLE IF EXISTS `Asiento`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Asiento` (
-  `S_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `S_CAT_PRECIO` varchar(20) NOT NULL,
-  `S_USUARIOID` int(11) DEFAULT NULL,
-  PRIMARY KEY (`S_ID`),
-  UNIQUE KEY `S_CAT_PRECIO` (`S_CAT_PRECIO`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `idAsiento` int(11) NOT NULL AUTO_INCREMENT,
+  `precioDeCategoria` varchar(20) NOT NULL,
+  `idUsuario` int(11) DEFAULT NULL,
+  PRIMARY KEY (`idAsiento`),
+  UNIQUE KEY `S_CAT_PRECIO` (`precioDeCategoria`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -64,6 +65,7 @@ CREATE TABLE `Asiento` (
 
 LOCK TABLES `Asiento` WRITE;
 /*!40000 ALTER TABLE `Asiento` DISABLE KEYS */;
+INSERT INTO `Asiento` VALUES (2,'uaaaA',2);
 /*!40000 ALTER TABLE `Asiento` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -77,10 +79,9 @@ DROP TABLE IF EXISTS `Empresa`;
 CREATE TABLE `Empresa` (
   `E_ID` int(11) NOT NULL AUTO_INCREMENT,
   `E_NOMBRE` varchar(20) NOT NULL,
-
   PRIMARY KEY (`E_ID`),
   UNIQUE KEY `E_NOMBRE` (`E_NOMBRE`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -89,6 +90,7 @@ CREATE TABLE `Empresa` (
 
 LOCK TABLES `Empresa` WRITE;
 /*!40000 ALTER TABLE `Empresa` DISABLE KEYS */;
+INSERT INTO `Empresa` VALUES (2,'unNombre');
 /*!40000 ALTER TABLE `Empresa` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -100,17 +102,17 @@ DROP TABLE IF EXISTS `Tramo`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Tramo` (
-  `T_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `T_ORIGEN` varchar(20) NOT NULL,
-  `T_DESTINO` varchar(20) NOT NULL,
-  `T_HORASALIDA` int(11) NOT NULL,
-  `T_HORALLEGADA` int(11) NOT NULL,
-  `T_PRECIO` int(11) NOT NULL,
-  `T_IDV` int(11) NOT NULL,
-  PRIMARY KEY (`T_IDV`),
-  KEY `T_ID` (`T_ID`),
-  CONSTRAINT `Tramo_ibfk_1` FOREIGN KEY (`T_ID`) REFERENCES `Vuelo` (`V_ID`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `idTramo` int(11) NOT NULL AUTO_INCREMENT,
+  `origen` varchar(20) NOT NULL,
+  `destino` varchar(20) NOT NULL,
+  `horaSalida` int(11) NOT NULL,
+  `horaLlegada` int(11) NOT NULL,
+  `precioBase` int(11) NOT NULL,
+  `idVuelo` int(11) NOT NULL,
+  PRIMARY KEY (`idVuelo`),
+  KEY `T_ID` (`idTramo`),
+  CONSTRAINT `fk_Tramo_1` FOREIGN KEY (`idVuelo`) REFERENCES `Vuelo` (`idVuelo`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -119,6 +121,7 @@ CREATE TABLE `Tramo` (
 
 LOCK TABLES `Tramo` WRITE;
 /*!40000 ALTER TABLE `Tramo` DISABLE KEYS */;
+INSERT INTO `Tramo` VALUES (2,'unOrigenA','unDestinoA',22,22,12,2);
 /*!40000 ALTER TABLE `Tramo` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -130,10 +133,10 @@ DROP TABLE IF EXISTS `Usuario`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Usuario` (
-  `U_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `idUsuario` int(11) NOT NULL AUTO_INCREMENT,
   `U_NOMBRE` varchar(20) NOT NULL,
-  PRIMARY KEY (`U_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=latin1;
+  PRIMARY KEY (`idUsuario`)
+) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -142,7 +145,7 @@ CREATE TABLE `Usuario` (
 
 LOCK TABLES `Usuario` WRITE;
 /*!40000 ALTER TABLE `Usuario` DISABLE KEYS */;
-INSERT INTO `Usuario` VALUES (12,'UnUsuario');
+INSERT INTO `Usuario` VALUES (29,'usuario'),(30,'JuanCito'),(31,'Juanca'),(32,'usuario'),(33,'usuario'),(34,'JuanCito'),(35,'Juanca'),(36,'usuario'),(40,'usuario'),(41,'JuanCito'),(42,'Juanca'),(43,'usuario');
 /*!40000 ALTER TABLE `Usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -154,12 +157,12 @@ DROP TABLE IF EXISTS `Vuelo`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Vuelo` (
-  `V_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `V_IDA` int(11) NOT NULL,
-  PRIMARY KEY (`V_ID`),
-  KEY `V_IDA` (`V_IDA`),
-  CONSTRAINT `Vuelo_ibfk_1` FOREIGN KEY (`V_IDA`) REFERENCES `Aerolinea` (`A_ID`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `idVuelo` int(11) NOT NULL AUTO_INCREMENT,
+  `idAerolinea` int(11) NOT NULL,
+  PRIMARY KEY (`idVuelo`),
+  KEY `V_IDA` (`idAerolinea`),
+  CONSTRAINT `Vuelo_ibfk_1` FOREIGN KEY (`idAerolinea`) REFERENCES `Aerolinea` (`idAerolinea`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -168,6 +171,7 @@ CREATE TABLE `Vuelo` (
 
 LOCK TABLES `Vuelo` WRITE;
 /*!40000 ALTER TABLE `Vuelo` DISABLE KEYS */;
+INSERT INTO `Vuelo` VALUES (2,2);
 /*!40000 ALTER TABLE `Vuelo` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -180,12 +184,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-09-15 21:50:05
-
-
-
-
-
-
-
-
+-- Dump completed on 2014-09-22 17:55:19

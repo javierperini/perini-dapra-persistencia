@@ -9,14 +9,26 @@ public class Asiento extends Entidad {
 	Boolean estaReservado;
 	Usuario reservadoPor;
 	private Tramo miTramo;
+	int precioPorCategoria;
+	
+
 	
 		
+	public int getPrecioPorCategoria() {
+		return precioPorCategoria;
+	}
+
+	public void setPrecioPorCategoria(int precioPorCategoria) {
+		this.precioPorCategoria = precioPorCategoria;
+	}
+
 	public Categoria getUnaCategoria() {
 		return unaCategoria;
 	}
 
 	public void setUnaCategoria(Categoria unaCategoria) {
 		this.unaCategoria = unaCategoria;
+		this.setPrecioPorCategoria(this.unaCategoria.getPrecio());
 	}
 
 	public Tramo getMiTramo() {

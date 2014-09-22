@@ -9,7 +9,7 @@ public class EntidadDAO<T> {
 	public EntidadDAO(Class<T> entityType) {
 		this.entityType = entityType;
 	}
-	public T get(BigDecimal id){
+	public T get(int id){
 		return entityType.cast(SessionManager.getSession().get(entityType,id));
 	}
 
