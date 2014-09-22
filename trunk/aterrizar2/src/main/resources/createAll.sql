@@ -39,7 +39,7 @@ CREATE TABLE `Aerolinea` (
 
 LOCK TABLES `Aerolinea` WRITE;
 /*!40000 ALTER TABLE `Aerolinea` DISABLE KEYS */;
-INSERT INTO `Aerolinea` VALUES (2,'unNombreA',2);
+INSERT INTO `Aerolinea` VALUES (1,'lan',2),(2,'unNombreA',2);
 /*!40000 ALTER TABLE `Aerolinea` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -52,11 +52,12 @@ DROP TABLE IF EXISTS `Asiento`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Asiento` (
   `idAsiento` int(11) NOT NULL AUTO_INCREMENT,
-  `precioDeCategoria` varchar(20) NOT NULL,
+  `precioDeCategoria` int(11) NOT NULL,
   `idUsuario` int(11) DEFAULT NULL,
+  `reservado` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`idAsiento`),
   UNIQUE KEY `S_CAT_PRECIO` (`precioDeCategoria`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -65,7 +66,7 @@ CREATE TABLE `Asiento` (
 
 LOCK TABLES `Asiento` WRITE;
 /*!40000 ALTER TABLE `Asiento` DISABLE KEYS */;
-INSERT INTO `Asiento` VALUES (2,'uaaaA',2);
+INSERT INTO `Asiento` VALUES (2,0,2,0),(21,20,2,1);
 /*!40000 ALTER TABLE `Asiento` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -109,10 +110,11 @@ CREATE TABLE `Tramo` (
   `horaLlegada` int(11) NOT NULL,
   `precioBase` int(11) NOT NULL,
   `idVuelo` int(11) NOT NULL,
-  PRIMARY KEY (`idVuelo`),
+  PRIMARY KEY (`idTramo`),
   KEY `T_ID` (`idTramo`),
+  KEY `fk_Tramo_1_idx` (`idVuelo`),
   CONSTRAINT `fk_Tramo_1` FOREIGN KEY (`idVuelo`) REFERENCES `Vuelo` (`idVuelo`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -121,7 +123,7 @@ CREATE TABLE `Tramo` (
 
 LOCK TABLES `Tramo` WRITE;
 /*!40000 ALTER TABLE `Tramo` DISABLE KEYS */;
-INSERT INTO `Tramo` VALUES (2,'unOrigenA','unDestinoA',22,22,12,2);
+INSERT INTO `Tramo` VALUES (2,'unOrigenA','unDestinoA',22,22,12,2),(3,'China','Buenos Aires',1,2,30,2);
 /*!40000 ALTER TABLE `Tramo` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -136,7 +138,7 @@ CREATE TABLE `Usuario` (
   `idUsuario` int(11) NOT NULL AUTO_INCREMENT,
   `U_NOMBRE` varchar(20) NOT NULL,
   PRIMARY KEY (`idUsuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -145,7 +147,7 @@ CREATE TABLE `Usuario` (
 
 LOCK TABLES `Usuario` WRITE;
 /*!40000 ALTER TABLE `Usuario` DISABLE KEYS */;
-INSERT INTO `Usuario` VALUES (29,'usuario'),(30,'JuanCito'),(31,'Juanca'),(32,'usuario'),(33,'usuario'),(34,'JuanCito'),(35,'Juanca'),(36,'usuario'),(40,'usuario'),(41,'JuanCito'),(42,'Juanca'),(43,'usuario');
+INSERT INTO `Usuario` VALUES (29,'usuario'),(44,'Juanca'),(45,'usuario'),(46,'JuanCito'),(47,'usuario');
 /*!40000 ALTER TABLE `Usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -184,4 +186,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-09-22 17:55:19
+-- Dump completed on 2014-09-22 19:57:16
