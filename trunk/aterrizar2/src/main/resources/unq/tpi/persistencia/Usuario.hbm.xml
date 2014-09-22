@@ -5,7 +5,7 @@
 <hibernate-mapping>
     <class name="unq.tpi.persistencia.Usuario" table="Usuario" >
         <id name="id" type="java.lang.Integer">
-            <column name="U_ID" />
+            <column name="idUsuario" />
             <generator class="identity" />
         </id>
 

@@ -3,19 +3,18 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
  
 <hibernate-mapping>
-    <class name="unq.tpi.persistencia.Vuelo" table="VUELO" >
+    <class name="unq.tpi.persistencia.Vuelo" table="Vuelo" >
         <id name="id" type="java.lang.Integer">
-            <column name="V_ID" />
+            <column name="idVuelo" />
             <generator class="identity" />
         </id>
         
-        <list name="unosTramos" cascade="all-delete-orphan"> 
-            <key column="V_ID" /> 
-            <index column="ORDEN" /> 
+        <bag name="unosTramos" cascade="all-delete-orphan"> 
+            <key column="idVuelo" /> 
             <one-to-many class="unq.tpi.persistencia.Tramo" /> 
-        </list>  
+        </bag>  
         
-        <many-to-one name="miAerolinea" column="A_ID"  />
+        <many-to-one name="miAerolinea" column="idAerolinea"  />
 
     </class>
 </hibernate-mapping>
