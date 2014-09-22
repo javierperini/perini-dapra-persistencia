@@ -5,15 +5,11 @@ public class Asiento extends Entidad {
 	
 	int nro;
 	Categoria unaCategoria;
-	Usuario compradoPor;
 	Boolean estaReservado;
-	Usuario reservadoPor;
+	int reservadoPor;
 	private Tramo miTramo;
 	int precioPorCategoria;
 	
-
-	
-		
 	public int getPrecioPorCategoria() {
 		return precioPorCategoria;
 	}
@@ -39,12 +35,12 @@ public class Asiento extends Entidad {
 		this.miTramo = miTramo;
 	}
 
-	public Usuario getReservadoPor() {
+	public int getReservadoPor() {
 		return reservadoPor;
 	}
 
-	public void setReservadoPor(Usuario reservadoPor) {
-		this.reservadoPor = reservadoPor;
+	public void setReservadoPor(int id) {
+		this.reservadoPor = id;
 	}
 
 	protected Asiento() {
@@ -89,17 +85,9 @@ public class Asiento extends Entidad {
 		this.nro = nro;
 	}
 
-	public Usuario getCompradoPor() {
-		return compradoPor;
-	}
-
-	public void setCompradoPor(Usuario cliente) {
-		this.compradoPor = cliente;
-	}
-
 	public void reservarPor(Usuario unUsuario) {
 		this.setEstaReservado(true);
-		this.setReservadoPor(unUsuario);
+		this.setReservadoPor(unUsuario.id);
 	}
 
 	
