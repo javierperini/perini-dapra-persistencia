@@ -15,6 +15,9 @@ public class Manager<T> {
 		public T modificar(Operation<T>  consulta) {
 			return SessionManager.runInSession(consulta);
 		}
+		public Object session(String consulta){
+			  Se
+		}
 	}
 
 

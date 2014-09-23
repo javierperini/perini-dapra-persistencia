@@ -32,7 +32,7 @@ public class SessionManager {
 		try {
 			session = sessionFactory.openSession();
 			transaction = session.beginTransaction();
-
+			
 			tlSession.set(session);
 			
 			result = cmd.execute();
