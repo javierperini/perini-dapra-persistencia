@@ -13,7 +13,7 @@
             <column name="nombreAerolinea" length="20" not-null="true" unique="false" />
         </property>
         
-        <bag name="unosVuelos" cascade="all-delete-orphan"> 
+        <bag name="unosVuelos" cascade="all-delete-orphan"inverse="true"> 
             <key column="idAerolinea" /> 
             <one-to-many class="unq.tpi.persistencia.Vuelo" /> 
         </bag>  
