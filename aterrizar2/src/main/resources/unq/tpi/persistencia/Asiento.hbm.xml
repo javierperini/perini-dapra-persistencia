@@ -21,5 +21,6 @@
             <column name="reservado" length="1" not-null="true" unique="false" />
         </property>
         
+      
     </class>
 </hibernate-mapping>

@@ -19,7 +19,7 @@ public class ConsultarTest extends SetUpCliente{
 	}
 
 	public void testApp2() throws Exception {
-		/*
+		
 		SessionManager.runInSession(new Operation<Object>() {
 			public Object execute() {
 				ConsultarUsuario consulta=new ConsultarUsuario(usuario.getId());
@@ -28,11 +28,14 @@ public class ConsultarTest extends SetUpCliente{
 				for (Asiento asiento : m) {
 					
 					System.out.println(asiento.getId());
-					
+					System.out.println(asiento.getNro());
+					System.out.println(asiento.getPrecioPorCategoria());
+					System.out.println(asiento.getEstaReservado());
+					System.out.println("-------------");
 				}
 				return null;
 			}
 		});
-		*/
+		
 	}
 }
