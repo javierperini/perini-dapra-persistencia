@@ -27,7 +27,7 @@
             <column name="precioBase" not-null="false" unique="false"/>
         </property>
         
-        <bag name="asientos" cascade="all-delete-orphan"inverse="true"> 
+        <bag name="asientos" cascade="all-delete-orphan" inverse="true"> 
             <key column="idAsiento" /> 
             <one-to-many class="unq.tpi.persistencia.Asiento" /> 
         </bag> 

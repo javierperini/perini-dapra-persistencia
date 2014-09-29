@@ -13,10 +13,10 @@
             <column name="E_NOMBRE" length="20" not-null="true" unique="false" />
         </property>
         
-        <bag name="unasAerolineas" cascade="all-delete-orphan"inverse="true"> 
+        <bag name="unasAerolineas" cascade="all-delete-orphan" inverse="true"> 
             <key column="idEmpresa" /> 
             <one-to-many class="unq.tpi.persistencia.Aerolinea" /> 
-        </bag>  
+        </bag>
 		
     </class>
 </hibernate-mapping>
