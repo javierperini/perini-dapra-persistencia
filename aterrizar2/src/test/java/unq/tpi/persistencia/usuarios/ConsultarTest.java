@@ -19,7 +19,7 @@ public class ConsultarTest extends SetUpCliente{
 	}
 
 	public void testApp2() throws Exception {
-		
+		/*
 		SessionManager.runInSession(new Operation<Object>() {
 			public Object execute() {
 				ConsultarUsuario consulta=new ConsultarUsuario(usuario.getId());
@@ -33,6 +33,6 @@ public class ConsultarTest extends SetUpCliente{
 				return null;
 			}
 		});
-		
+		*/
 	}
 }
