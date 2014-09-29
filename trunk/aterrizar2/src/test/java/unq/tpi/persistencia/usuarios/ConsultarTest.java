@@ -23,7 +23,7 @@ public class ConsultarTest extends SetUpCliente{
 		SessionManager.runInSession(new Operation<Object>() {
 			public Object execute() {
 				ConsultarUsuario consulta=new ConsultarUsuario(usuario.getId());
-				List<Asiento> m = (List<Asiento>)(List<?>) new Manager<Asiento>().query("from Asiento ");
+				List<Asiento> m = (List<Asiento>)new Manager<Asiento>().query("from Asiento ");
 				
 				for (Asiento asiento : m) {
 					

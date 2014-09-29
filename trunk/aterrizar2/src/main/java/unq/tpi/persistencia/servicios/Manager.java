@@ -1,5 +1,10 @@
 package unq.tpi.persistencia.servicios;
 
+import java.util.List;
+
+import org.hibernate.Query;
+
+import unq.tpi.persistencia.Asiento;
 import unq.tpi.persistencia.daos.SessionManager;
 
 public class Manager<T> {
@@ -16,7 +21,12 @@ public class Manager<T> {
 			return SessionManager.runInSession(consulta);
 		}
 		public Object session(String consulta){
-			  Se
+			return	null;
+		}
+
+		public List<Asiento> query(String string) {
+			Query q= SessionManager.getSession().createQuery(string);
+			return q.list();
 		}
 	}
 
