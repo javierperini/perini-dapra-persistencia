@@ -4,12 +4,12 @@ import unq.tpi.persistencia.Usuario;
 import unq.tpi.persistencia.daos.EntidadDAO;
 import unq.tpi.persistencia.servicios.Operation;
 
-public class ModificarUsuario implements Operation<Usuario> {
+public class Modificar implements Operation<Usuario> {
 
 	private String nombre;
 	private int id;
 
-	public ModificarUsuario(int id, String nombre) {
+	public Modificar(int id, String nombre) {
 		super();
 		this.nombre = nombre;
 		this.id = id;

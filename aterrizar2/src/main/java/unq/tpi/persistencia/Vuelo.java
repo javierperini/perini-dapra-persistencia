@@ -1,10 +1,11 @@
 package unq.tpi.persistencia;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Vuelo extends Entidad {
 	private String nombre;
-	private List<Tramo> unosTramos;
+	private List<Tramo> unosTramos = new ArrayList<Tramo>();
 	private Aerolinea miAerolinea;
 
 	protected Vuelo() {

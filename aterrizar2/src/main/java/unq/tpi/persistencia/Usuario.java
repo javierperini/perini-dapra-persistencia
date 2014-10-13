@@ -1,13 +1,16 @@
 package unq.tpi.persistencia;
 
+
+
 public class Usuario extends Entidad{
 	
 	private String nombre;
-
+	
 	protected Usuario(){
 	}
 	
 	public Usuario(String nombre){
+		super();
 		this.setNombre(nombre);
 	}
 
@@ -18,6 +21,8 @@ public class Usuario extends Entidad{
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+	
+
 
 
 }

@@ -13,14 +13,9 @@
             <column name="precioDeCategoria" length="20" not-null="true" unique="false" />
         </property>
         
-        <property name="reservadoPor" type="java.lang.Integer">
-            <column name="idUsuario" length="20" not-null="true" unique="false" />
-        </property>
-        
-        <property name="estaReservado" type="java.lang.Boolean">
-            <column name="reservado" length="1" not-null="true" unique="false" />
-        </property>
-        
+       <many-to-one name="tramo" column="idTramo"  />
+       <many-to-one name="reservadoPor" column="idUsuario"  />
+      
       
     </class>
 </hibernate-mapping>

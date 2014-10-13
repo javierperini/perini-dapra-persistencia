@@ -5,10 +5,10 @@ public class Asiento extends Entidad {
 	
 	int nro;
 	Categoria unaCategoria;
-	Boolean estaReservado;
-	int reservadoPor;
-	int idTramo;
+	Usuario reservadoPor;
+	private Tramo tramo;
 	int precioPorCategoria;
+
 	
 	public int getPrecioPorCategoria() {
 		return precioPorCategoria;
@@ -27,19 +27,12 @@ public class Asiento extends Entidad {
 		this.setPrecioPorCategoria(this.unaCategoria.getPrecio());
 	}
 
-	public int getMiTramo() {
-		return idTramo;
-	}
 
-	public void setMiTramo(int miTramo) {
-		this.idTramo = miTramo;
-	}
-
-	public int getReservadoPor() {
+	public Usuario getReservadoPor() {
 		return reservadoPor;
 	}
 
-	public void setReservadoPor(int id) {
+	public void setReservadoPor(Usuario id) {
 		this.reservadoPor = id;
 	}
 
@@ -50,14 +43,14 @@ public class Asiento extends Entidad {
 		this.nro = nro;
 	}
 	
-	public Asiento(int nro, int miTramo){
+	public Asiento(int nro, Tramo miTramo){
 		this.nro = nro;
-		this.idTramo = miTramo;
+		this.tramo = miTramo;
 	}
 	
-	public Asiento(int nro, int miTramo, Categoria miCategoria){
+	public Asiento(int nro, Tramo miTramo, Categoria miCategoria){
 		this.nro = nro;
-		this.idTramo = miTramo;
+		this.tramo = miTramo;
 		this.unaCategoria = miCategoria;
 	}
 	
@@ -66,11 +59,7 @@ public class Asiento extends Entidad {
 	}
 	
 	public Boolean getEstaReservado() {
-		return estaReservado;
-	}
-
-	public void setEstaReservado(Boolean estaReservado) {
-		this.estaReservado = estaReservado;
+		return reservadoPor!=null;
 	}
 
 	public int precioAsiento(){
@@ -86,8 +75,15 @@ public class Asiento extends Entidad {
 	}
 
 	public void reservarPor(Usuario unUsuario) {
-		this.setEstaReservado(true);
-		this.setReservadoPor(unUsuario.id);
+		this.setReservadoPor(unUsuario);
+	}
+
+	public Tramo getTramo() {
+		return tramo;
+	}
+
+	public void setTramo(Tramo tramo) {
+		this.tramo = tramo;
 	}
 
 	
