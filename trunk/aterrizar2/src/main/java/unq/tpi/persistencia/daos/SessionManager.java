@@ -1,10 +1,11 @@
 package unq.tpi.persistencia.daos;
 
+import java.util.List;
+
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.classic.Session;
-
 import unq.tpi.persistencia.servicios.Operation;
 
 public class SessionManager {
@@ -51,7 +52,7 @@ public class SessionManager {
 		
 		return result;
 	}
-
+	
 	public static Session getSession() {
 		return tlSession.get();
 	}

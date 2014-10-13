@@ -1,5 +1,6 @@
 package unq.tpi.persistencia;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Tramo extends Entidad{
@@ -8,7 +9,7 @@ public class Tramo extends Entidad{
 	private int precio;
 	private int horaLlegada;
 	private int horaSalida;
-	private List<Asiento> asientos;
+	private List<Asiento> asientos = new ArrayList<Asiento>();
 	private Vuelo miVuelo; 
 
 	/**
