@@ -40,6 +40,13 @@ public class ReservardorDeAsiento implements Operation<List<Asiento>>{
 	    return asientos;	
 	    }	
 	
+	public boolean asientoDisponibles(List<Asiento> asientosReq){
+		Query q= SessionManager.getSession().createQuery("from Asiento where tramo = :tramo and reservadoPor is null");
+		q.setParameter("tramo", this.tramo);
+		List<Asiento>asientos =q.list();
+		return this.estanLibres(asientos, asientosReq);
+	}
+	
 	public boolean estanLibres(List<Asiento> asientos, List<Asiento> asientosReq){
 		return !asientos.isEmpty() && asientos.containsAll(asientosReq);
 	}

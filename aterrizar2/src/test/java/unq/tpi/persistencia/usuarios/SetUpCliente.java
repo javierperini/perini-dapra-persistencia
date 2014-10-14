@@ -43,9 +43,9 @@ public abstract class SetUpCliente extends AbstractHibernateTest{
 		a1 = new Asiento(1, argentinaBrasil);
 		a2 = new Asiento(2, argentinaBrasil);
 		a3 = new Asiento(3, argentinaBrasil);
-		b1 = new Asiento(1, chinaBsAs);
-		b2 = new Asiento(2, chinaBsAs);
-		b3 = new Asiento(3, chinaBsAs);	
+		b1 = new Asiento(6, chinaBsAs);
+		b2 = new Asiento(4, chinaBsAs);
+		b3 = new Asiento(5, chinaBsAs);	
 		
 		
 		asatej.agregarAerolinea(lan);
