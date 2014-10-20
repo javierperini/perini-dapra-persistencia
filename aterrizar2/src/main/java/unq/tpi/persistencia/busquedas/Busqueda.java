@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.hibernate.Query;
 
+import exceptions.PrimerCriterioDebeSerSinConectorException;
+import exceptions.SoloPrimerCriterioDebeSerSinConectorException;
 import unq.tpi.persistencia.Entidad;
 import unq.tpi.persistencia.Vuelo;
 import unq.tpi.persistencia.daos.SessionManager;
@@ -13,7 +15,14 @@ public class Busqueda extends Entidad {
 
 	private List<CriterioDeBusqueda> criterios = new ArrayList<CriterioDeBusqueda>();
 	
-	public void agregarCriterio(CriterioDeBusqueda nuevoCriterio){
+	public void agregarCriterio(CriterioDeBusqueda nuevoCriterio) throws PrimerCriterioDebeSerSinConectorException, SoloPrimerCriterioDebeSerSinConectorException{
+		if (this.criterios.size() == 0 && nuevoCriterio.getClass() == CriterioConConector.class){
+			throw new PrimerCriterioDebeSerSinConectorException();
+		}
+		if (this.criterios.size() > 0 && nuevoCriterio.getClass() == Criterio.class){
+			throw new SoloPrimerCriterioDebeSerSinConectorException();
+		}
+		
 		this.criterios.add(nuevoCriterio);
 	}
 	
