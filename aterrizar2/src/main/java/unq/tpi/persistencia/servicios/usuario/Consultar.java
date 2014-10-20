@@ -16,7 +16,7 @@ public class Consultar<T extends Entidad> implements Operation<T> {
 		this.entidad = entidad;
 	}
 
-	public T reservarAsiento() {
+	public T execute() {
 		 new EntidadDAO(entidad.getClass()).get(entidad.getId());
 		return entidad;
 	}
