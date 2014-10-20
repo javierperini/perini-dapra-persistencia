@@ -20,6 +20,7 @@
 		<mapping resource="unq/tpi/persistencia/Vuelo.hbm.xml"></mapping>
 		<mapping resource="unq/tpi/persistencia/Tramo.hbm.xml"></mapping>
 		<mapping resource="unq/tpi/persistencia/Asiento.hbm.xml"></mapping>
+		<mapping resource="unq/tpi/persistencia/Busqueda.hbm.xml"></mapping>
 		
 		
     </session-factory>
