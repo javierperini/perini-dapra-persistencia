@@ -14,7 +14,7 @@ public class Borrar<T> implements Operation<T> {
 		this.entidad = entidad;
 	}
 
-	public T reservarAsiento() {
+	public T execute() {
 		new EntidadDAO(entidad.getClass()).delete(entidad);
 		return entidad;
 	}

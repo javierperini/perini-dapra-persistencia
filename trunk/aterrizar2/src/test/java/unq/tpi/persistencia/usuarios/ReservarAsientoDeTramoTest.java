@@ -17,8 +17,8 @@ public class ReservarAsientoDeTramoTest extends SetUpCliente {
 	public void testReservarAsiento() throws Exception{
 		SessionManager.runInSession(new Operation<Void>()  {
 
-			public Void reservarAsiento() throws EstaReservadoExeption {
-				List<Asiento> asientos = new ReservardorDeAsiento(usuario, argentinaBrasil).reservarAsiento();
+			public Void execute() throws EstaReservadoExeption {
+				List<Asiento> asientos = new ReservardorDeAsiento(usuario, argentinaBrasil).execute();
 				Asiento asiento = new EntidadDAO<Asiento>(Asiento.class).get(asientos.get(0).getId());
 				assertTrue(asiento.getEstaReservado());
 				return null;
@@ -27,13 +27,13 @@ public class ReservarAsientoDeTramoTest extends SetUpCliente {
 	}
 	
 	@Test(expected= EstaReservadoExeption.class)
-	public void testNoPuedoReservarAsientoN() throws Exception{
+	public void testNoPuedoReservarAsiento() throws Exception{
 		SessionManager.runInSession(new Operation<Void>() {
 					
-			public Void reservarAsiento() throws EstaReservadoExeption {
+			public Void execute() throws EstaReservadoExeption {
 				ReservardorDeAsiento rAsientos=new ReservardorDeAsiento(usuario, argentinaBrasil);
-				rAsientos.reservarAsiento();
-				rAsientos.reservarAsiento();
+				rAsientos.execute();
+				rAsientos.execute();
 				return null;
 			}
 		});
@@ -42,7 +42,7 @@ public class ReservarAsientoDeTramoTest extends SetUpCliente {
 	public void testReservarUnConjuntoDeAsientos() throws Exception{
 		SessionManager.runInSession(new Operation<Void>() {
 
-			public Void reservarAsiento() throws EstaReservadoExeption {
+			public Void execute() throws EstaReservadoExeption {
 				
 			ArrayList<Asiento> asientosArgBr = new ArrayList<Asiento>();
 			asientosArgBr.add(a2);
@@ -54,10 +54,26 @@ public class ReservarAsientoDeTramoTest extends SetUpCliente {
 		});
 		}
 		
+	public void testNoPuedoReservarUnConjuntoDeAsientos() throws Exception{
+		SessionManager.runInSession(new Operation<Void>() {
+
+			public Void execute() throws EstaReservadoExeption {
+			ReservardorDeAsiento rAsientos= new ReservardorDeAsiento(usuario, argentinaBrasil);
+			rAsientos.execute();
+			ArrayList<Asiento> asientosArgBr = new ArrayList<Asiento>();
+			asientosArgBr.add(a1);
+			asientosArgBr.add(a2);
+			List<Asiento> asientos2 = rAsientos.reservarAsientosMultiples(asientosArgBr);
+			assertFalse(asientos2.containsAll(asientosArgBr));
+			return null;
+			}
+		});
+		}
 		public void testHayAsientosDisponibles() throws Exception{
 			SessionManager.runInSession(new Operation<Void>() {
 
-				public Void reservarAsiento() {
+				public Void execute() {
+				
 				ArrayList<Asiento> asientosArgBr = new ArrayList<Asiento>();
 				asientosArgBr.add(a2);
 				asientosArgBr.add(a3);
@@ -67,5 +83,21 @@ public class ReservarAsientoDeTramoTest extends SetUpCliente {
 				}
 			});
 		}
+		
+		public void testNoHayAsientosDisponibles() throws Exception{
+			SessionManager.runInSession(new Operation<Void>() {
+
+				public Void execute() throws EstaReservadoExeption {
+				ReservardorDeAsiento rAsientos=	new ReservardorDeAsiento(usuario, argentinaBrasil);
+				ArrayList<Asiento> asientosArgBr = new ArrayList<Asiento>();
+				asientosArgBr.add(a2);
+				asientosArgBr.add(a3);
+				rAsientos.reservarAsientosMultiples(asientosArgBr);
+				assertFalse(rAsientos.asientoDisponibles(asientosArgBr));
+				return null;
+				}
+			});
+		}
+
 
 }

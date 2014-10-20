@@ -25,7 +25,7 @@ public class ReservardorDeAsiento implements Operation<List<Asiento>>{
 		List<Asiento>asientos =q.list();
 		return asientos;
 	}
-	public List<Asiento> reservarAsiento() throws EstaReservadoExeption {
+	public List<Asiento> execute() throws EstaReservadoExeption {
 		List<Asiento> asientos = consultaAsientosDisponibles();
 		 if(!asientos.isEmpty())
 			this.reservar(asientos.get(0));
@@ -45,11 +45,21 @@ public class ReservardorDeAsiento implements Operation<List<Asiento>>{
 		List<Asiento> asientos = consultaAsientosDisponibles();
 		 if(this.estanLibres(asientos, asientosReq)){
 			 for(Asiento a : asientos)
-				this.reservar(a);
+				try {
+					this.reservar(a);
+				}catch(EstaReservadoExeption e){
+					this.sacarReserva(asientos);
+				}
 			 }
 	    return asientos;	
 	    }	
 	
+	private void sacarReserva(List<Asiento> asientos) {
+		for (Asiento a: asientos){
+			a.setReservadoPor(null);
+		}
+	}
+
 	public boolean asientoDisponibles(List<Asiento> asientosReq){
 		List<Asiento> asientos = consultaAsientosDisponibles();
 		return this.estanLibres(asientos, asientosReq);
