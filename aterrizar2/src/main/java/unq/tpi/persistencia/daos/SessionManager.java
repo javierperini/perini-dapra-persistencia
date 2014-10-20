@@ -36,7 +36,7 @@ public class SessionManager {
 			
 			tlSession.set(session);
 			
-			result = cmd.execute();
+			result = cmd.reservarAsiento();
 
 			session.flush();
 			transaction.commit();

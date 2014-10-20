@@ -56,12 +56,13 @@ public abstract class SetUpCliente extends AbstractHibernateTest{
 		vueloTas.agregar(chinaBsAs);
 		argentinaBrasil.agregarAsiento(a1);
 		chinaBsAs.agregarAsiento(b1);
-//		argentinaBrasil.agregarAsiento(a2);
-//		argentinaBrasil.agregarAsiento(a3);
-//		chinaBsAs.agregarAsiento(b2);
-//		chinaBsAs.agregarAsiento(b3);
+		argentinaBrasil.agregarAsiento(a2);
+		argentinaBrasil.agregarAsiento(a3);
+		chinaBsAs.agregarAsiento(b2);
+		chinaBsAs.agregarAsiento(b3);
 		new Manager<Usuario>().crear(new Crear<Usuario>(usuario));
 		new Manager<Empresa>().crear(new Crear<Empresa>(asatej));
+		
 		
 	}
 }

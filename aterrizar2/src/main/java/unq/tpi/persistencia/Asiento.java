@@ -36,7 +36,7 @@ public class Asiento extends Entidad {
 		this.reservadoPor = id;
 	}
 
-	protected Asiento() {
+	public Asiento() {
 	}
 	
 	public Asiento(int nro){

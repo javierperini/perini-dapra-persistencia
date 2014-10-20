@@ -19,33 +19,42 @@ public class ReservardorDeAsiento implements Operation<List<Asiento>>{
 		this.tramo= idTramo;
 	}
 
-	public List<Asiento> execute() {
+	private List<Asiento> consultaAsientosDisponibles() {
 		Query q= SessionManager.getSession().createQuery("from Asiento where tramo = :tramo and reservadoPor is null");
 		q.setParameter("tramo", this.tramo);
 		List<Asiento>asientos =q.list();
+		return asientos;
+	}
+	public List<Asiento> reservarAsiento() throws EstaReservadoExeption {
+		List<Asiento> asientos = consultaAsientosDisponibles();
 		 if(!asientos.isEmpty())
-	    	asientos.get(0).reservarPor(this.usuario);
-		 
+			this.reservar(asientos.get(0));
 		 return asientos;	
-	    }	
+	    }
+
+	private void reservar(Asiento asiento) throws EstaReservadoExeption {
+		if(!asiento.getEstaReservado()){
+			asiento.reservarPor(this.usuario);
+		}
+		else{
+			throw new EstaReservadoExeption("Esta reservado no se puede hacer mas nada, llame a ...");
+		}
+	}	
 	
-	public List<Asiento> reservarAsientosMultiples(List<Asiento> asientosReq) {
-		Query q= SessionManager.getSession().createQuery("from Asiento where tramo = :tramo and reservadoPor is null");
-		q.setParameter("tramo", this.tramo);
-		List<Asiento>asientos =q.list();
+	public List<Asiento> reservarAsientosMultiples(List<Asiento> asientosReq) throws EstaReservadoExeption {
+		List<Asiento> asientos = consultaAsientosDisponibles();
 		 if(this.estanLibres(asientos, asientosReq)){
 			 for(Asiento a : asientos)
-				a.reservarPor(this.usuario);
+				this.reservar(a);
 			 }
 	    return asientos;	
 	    }	
 	
 	public boolean asientoDisponibles(List<Asiento> asientosReq){
-		Query q= SessionManager.getSession().createQuery("from Asiento where tramo = :tramo and reservadoPor is null");
-		q.setParameter("tramo", this.tramo);
-		List<Asiento>asientos =q.list();
+		List<Asiento> asientos = consultaAsientosDisponibles();
 		return this.estanLibres(asientos, asientosReq);
 	}
+
 	
 	public boolean estanLibres(List<Asiento> asientos, List<Asiento> asientosReq){
 		return !asientos.isEmpty() && asientos.containsAll(asientosReq);

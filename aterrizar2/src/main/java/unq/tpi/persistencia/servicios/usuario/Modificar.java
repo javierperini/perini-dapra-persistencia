@@ -15,7 +15,7 @@ public class Modificar implements Operation<Usuario> {
 		this.id = id;
 	}
 
-	public Usuario execute() {
+	public Usuario reservarAsiento() {
 		Usuario u =(Usuario) new EntidadDAO(Usuario.class).get(id);
 		u.setNombre(nombre);
 		return u;
