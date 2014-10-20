@@ -32,9 +32,7 @@
             <key column="idAsiento" /> 
             <one-to-many class="unq.tpi.persistencia.Asiento" /> 
         </bag> 
-        
-         
-        
+                
         <many-to-one name="miVuelo" column="idVuelo"  />
         
     </class>
