@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.hibernate.Query;
 
+import exceptions.NoSePuedeEliminarCriterioDeBusquedaException;
 import exceptions.PrimerCriterioDebeSerSinConectorException;
 import exceptions.SoloPrimerCriterioDebeSerSinConectorException;
 import unq.tpi.persistencia.Entidad;
@@ -26,7 +27,10 @@ public class Busqueda extends Entidad {
 		this.criterios.add(nuevoCriterio);
 	}
 	
-	public void eliminarUltimoCriterio(){
+	public void eliminarUltimoCriterio() throws NoSePuedeEliminarCriterioDeBusquedaException{
+		if (this.criterios.size() == 0){
+			throw new NoSePuedeEliminarCriterioDeBusquedaException();
+		}
 		this.criterios.remove(this.criterios.size() - 1);
 	}
 	
