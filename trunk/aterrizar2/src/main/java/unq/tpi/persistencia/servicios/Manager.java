@@ -32,7 +32,7 @@ public class Manager<T> implements Operation<List<T>> {
 			return	null;
 		}
 		
-		public List<T> execute() {
+		public List<T> reservarAsiento() {
 			Query q= SessionManager.getSession().createQuery(consulta);
 			return q.list();
 		}

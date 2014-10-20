@@ -12,7 +12,7 @@ public class Crear<T> implements Operation<T>{
 			this.entidad = entidad;
 		}
 
-		public T execute() {
+		public T reservarAsiento() {
 			new EntidadDAO(entidad.getClass()).save(entidad);
 			return entidad;
 		}

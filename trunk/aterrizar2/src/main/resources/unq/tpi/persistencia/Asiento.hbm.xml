@@ -4,13 +4,13 @@
  
 <hibernate-mapping>
     <class name="unq.tpi.persistencia.Asiento" table="Asiento" >
-         <id name="id" column="id" type="java.lang.Integer>
-      			<generator class="increment"/>
-    	</id>
-        <id name="nroAsiento" type="java.lang.Integer">
-            <column name="nroAsiento" />
+        <id name="id" type="java.lang.Integer">
+            <column name="idVuelo" />
             <generator class="identity" />
         </id>
+        <property name="nro" type="java.lang.Integer">
+              <column name="nroAsiento" length="20" not-null="true" unique="false" />
+        </property>
 
         <property name="precioPorCategoria" type="java.lang.Integer">
             <column name="precioDeCategoria" length="20" not-null="true" unique="false" />
