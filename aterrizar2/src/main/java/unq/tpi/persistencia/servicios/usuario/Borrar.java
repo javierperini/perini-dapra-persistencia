@@ -1,7 +1,6 @@
 package unq.tpi.persistencia.servicios.usuario;
 
 
-import unq.tpi.persistencia.Usuario;
 import unq.tpi.persistencia.daos.EntidadDAO;
 import unq.tpi.persistencia.servicios.Operation;
 
