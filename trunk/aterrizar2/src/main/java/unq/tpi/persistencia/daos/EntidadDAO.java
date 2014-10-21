@@ -1,6 +1,5 @@
 package unq.tpi.persistencia.daos;
 
-import java.math.BigDecimal;
 
 public class EntidadDAO<T> {
 	

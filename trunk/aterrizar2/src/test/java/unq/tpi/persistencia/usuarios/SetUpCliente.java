@@ -1,8 +1,5 @@
 package unq.tpi.persistencia.usuarios;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import unq.tpi.persistencia.AbstractHibernateTest;
 import unq.tpi.persistencia.Aerolinea;
 import unq.tpi.persistencia.Asiento;
@@ -11,6 +8,7 @@ import unq.tpi.persistencia.Tramo;
 import unq.tpi.persistencia.Usuario;
 import unq.tpi.persistencia.Vuelo;
 import unq.tpi.persistencia.servicios.Manager;
+import unq.tpi.persistencia.servicios.usuario.Borrar;
 import unq.tpi.persistencia.servicios.usuario.Crear;
 
 public abstract class SetUpCliente extends AbstractHibernateTest{
@@ -60,9 +58,12 @@ public abstract class SetUpCliente extends AbstractHibernateTest{
 		argentinaBrasil.agregarAsiento(a3);
 		chinaBsAs.agregarAsiento(b2);
 		chinaBsAs.agregarAsiento(b3);
-		new Manager<Usuario>().crear(new Crear<Usuario>(usuario));
-		new Manager<Empresa>().crear(new Crear<Empresa>(asatej));
-		
-		
+		new Manager<Usuario>().ejecutar(new Crear<Usuario>(usuario));
+		new Manager<Empresa>().ejecutar(new Crear<Empresa>(asatej));
+	}
+	
+	public void tearDown(){
+//		new Manager<Empresa>().ejecutar(new Borrar<Empresa>(asatej));
+//		new Manager<Usuario>().ejecutar(new Borrar<Usuario>(usuario));
 	}
 }
