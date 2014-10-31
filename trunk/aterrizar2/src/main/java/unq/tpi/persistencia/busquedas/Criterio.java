@@ -5,6 +5,7 @@ import java.util.List;
 
 import exceptions.NoSePuedeEliminarCriterioDeBusquedaException;
 import unq.tpi.persistencia.Aerolinea;
+import unq.tpi.persistencia.Categoria;
 import unq.tpi.persistencia.Entidad;
 
 public class Criterio extends Entidad {
@@ -12,36 +13,34 @@ public class Criterio extends Entidad {
 	private String criterio;
 	private List<Criterio> criteriosComplementarios = new ArrayList<Criterio>();
 
-	private Criterio(String criterioDeBusqueda){
-		this.criterio = criterioDeBusqueda;
+	private Criterio(String criterio){
+		this.criterio = criterio;
 	}
 	
 	public String getCriterio(){
 		String criterios = this.criterio;
 		for(Criterio c: this.criteriosComplementarios){
-			criterios.concat(c.getCriterio());
+			criterios = criterios.concat(c.getCriterio());
 		}
 		return criterios;
 	}
 	
-	// Metodos de manipulación de los criterios de búsqueda
+	// Metodos de manipulaciï¿½n de los criterios
 	
 	public void and(Criterio otroCriterio){
-		otroCriterio.and();
-		criteriosComplementarios.add(otroCriterio);
+		criteriosComplementarios.add(otroCriterio.and());
 	}
 	
 	public void or(Criterio otroCriterio){
-		otroCriterio.or();
-		criteriosComplementarios.add(otroCriterio);
+		criteriosComplementarios.add(otroCriterio.or());
 	}
 	
-	private void and(){
-		this.criterio = " and ".concat(this.criterio);
+	private Criterio and(){
+		return new Criterio(" and ".concat(this.criterio));
 	}
 	
-	private void or(){
-		this.criterio = " or ".concat(this.criterio);
+	private Criterio or(){
+		return new Criterio(" or ".concat(this.criterio));
 	}
 
 	public void removeLast() throws NoSePuedeEliminarCriterioDeBusquedaException{
@@ -59,16 +58,16 @@ public class Criterio extends Entidad {
 		return new Criterio("aerolinea = ".concat(unaAerolinea.getNombre()));
 	}
 	
-	public static Criterio busquedaPorCategoriaDeAsiento(Aerolinea unaAerolinea){
-		return new Criterio("");
+	public static Criterio busquedaPorCategoriaDeAsiento(Categoria unaCategoria){
+		return new Criterio("categoria = ".concat(unaCategoria.getNombre()));
 	}
 	
-	public static Criterio busquedaPorFechaDeSalida(String unaFechaDeSalida){
-		return new Criterio("");
+	public static Criterio busquedaPorFechaDeSalida(Integer unaFechaDeSalida){
+		return new Criterio("fechaDeSalida = ".concat(unaFechaDeSalida.toString()) );
 	}
 	
-	public static Criterio busquedaPorFechaDeLlegada(String unaFechaDeLlegada){
-		return new Criterio("");
+	public static Criterio busquedaPorFechaDeLlegada(Integer unaFechaDeLlegada){
+		return new Criterio("fechaDeLlegada = ".concat(unaFechaDeLlegada.toString()));
 	}
 	
 	public static Criterio busquedaPorOrigen(String unOrigen){
@@ -78,4 +77,17 @@ public class Criterio extends Entidad {
 	public static Criterio busquedaPorDestino(String unDestino){
 		return new Criterio("");
 	}
+	
+	
+	public static void main(String args[]){
+		Criterio c = new Criterio("criterio1");
+		Criterio d = new Criterio("criterio2");
+		Criterio e = new Criterio("criterio3");
+		c.and(d);
+		c.or(e);
+		c.and(busquedaPorAerolinea(new Aerolinea("LAN")));
+		
+		System.out.println(c.getCriterio());
+	}
+	
 }
