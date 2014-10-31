@@ -9,8 +9,8 @@ public class Tramo extends Entidad{
 	private int precio;
 	private int horaLlegada;
 	private int horaSalida;
-	//private int fechaLlegada;
-	//private int fechaSalida;
+	private int fechaLlegada;
+	private int fechaSalida;
 	private List<Asiento> asientos = new ArrayList<Asiento>();
 	private Vuelo miVuelo; 
 
@@ -20,28 +20,30 @@ public class Tramo extends Entidad{
 	protected Tramo() {
 	}
 	
-	public Tramo(String origen, String destino, Integer precio, int horaLlegada, int horaSalida){
+	public Tramo(String origen, String destino, Integer precio, int horaLlegada, int horaSalida,int fechaSalida ,int fechaLlegada){
 		this.origen = origen;
 		this.destino = destino;
 		this.precio = precio;
 		this.horaLlegada = horaLlegada;
 		this.horaSalida = horaSalida;
+		this.fechaLlegada = fechaLlegada;
+		this.fechaSalida = fechaSalida;
 		
 	}
 	
-	public Tramo(String origen, String destino, Integer precio, int horaLlegada, int horaSalida, Vuelo miVuelo){
+	public Tramo(String origen, String destino, Integer precio, int horaLlegada, int horaSalida, Vuelo miVuelo,int fechaDeEntrada, int fechaSalida){
 		this.origen = origen;
 		this.destino = destino;
 		this.precio = precio;
 		this.horaLlegada = horaLlegada;
 		this.horaSalida = horaSalida;
 		this.miVuelo = miVuelo;
-		//this.fechaLlegada =fechaDeEntrada;
-		//this.fechaSalida = fechaSalida;
+		this.fechaLlegada =fechaDeEntrada;
+		this.fechaSalida = fechaSalida;
 	}
 	
 	public Tramo(String origen, String destino, Integer precio, 
-			int horaLlegada, int horaSalida, Vuelo miVuelo , List<Asiento> asientos){
+			int horaLlegada, int horaSalida, Vuelo miVuelo , List<Asiento> asientos, int fechaLlegada ,int fechaSalida){
 		this.origen = origen;
 		this.destino = destino;
 		this.precio = precio;
@@ -49,6 +51,8 @@ public class Tramo extends Entidad{
 		this.horaSalida = horaSalida;
 		this.miVuelo = miVuelo;
 		this.setAsientos(asientos);
+		this.fechaLlegada = fechaLlegada;
+		this.fechaSalida = fechaSalida;
 		
 	}
 	
@@ -126,7 +130,7 @@ public class Tramo extends Entidad{
 	public void setPrecio(int precio) {
 		this.precio = precio;
 	}
-/*
+
 	public int getFechaSalida() {
 		return fechaSalida;
 	}
@@ -135,12 +139,12 @@ public class Tramo extends Entidad{
 		this.fechaSalida = fechaSalida;
 	}
 
-	public int getFechaDeEntrada() {
+	public int getFechaLlegada() {
 		return this.fechaLlegada;
 	}
 
-	public void setFechaDeEntrada(int fechaLlegada) {
+	public void setFechaLlegada(int fechaLlegada) {
 		this.fechaLlegada = fechaLlegada;
 	}
-*/	
+	
 }

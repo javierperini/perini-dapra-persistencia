@@ -36,8 +36,8 @@ public abstract class SetUpCliente extends AbstractHibernateTest{
 		tas = new Aerolinea("Tas", asatej);
 		vueloLan = new Vuelo("F11", lan);
 		vueloTas = new Vuelo("G15", tas);
-		argentinaBrasil = new Tramo("Argentina", "Brasil", 20, 15, 24, vueloLan);
-		chinaBsAs = new Tramo("China", "BsAs", 30, 2, 1, vueloTas);
+		argentinaBrasil = new Tramo("Argentina", "Brasil", 20, 15, 24, vueloLan,4,5);
+		chinaBsAs = new Tramo("China", "BsAs", 30, 2, 1, vueloTas,3,6);
 		a1 = new Asiento(1, argentinaBrasil);
 		a2 = new Asiento(2, argentinaBrasil);
 		a3 = new Asiento(3, argentinaBrasil);
