@@ -35,10 +35,12 @@ public class Busqueda extends Entidad {
 		
 		
 		String query = "from Vuelos where ";
-		query.concat(criterioDeBusqueda.getCriterio());
+		query = query.concat(criterioDeBusqueda.getCriterio());
 			
 		Query q= SessionManager.getSession().createQuery(query);
 		List<Vuelo> busqueda = q.list();
 		return busqueda;
 	}
+	
+	
 }
