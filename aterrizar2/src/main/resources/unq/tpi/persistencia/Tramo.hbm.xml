@@ -27,14 +27,14 @@
             <column name="precioBase" not-null="false" unique="false"/>
         </property>
         
-    <!--     <property name="fechaSalida" type="int">
+    	<property name="fechaSalida" type="int">
             <column name="fechaSalida" not-null="false" unique="false"/>
         </property>
         
         <property name="fechaLlegada" type="int">
             <column name="fechaLlegada" not-null="false" unique="false"/>
-        </property> -->
-        
+        </property>
+      
         
         <bag name="asientos" cascade="all-delete-orphan" inverse="true"> 
             <key column="idAsiento" /> 
