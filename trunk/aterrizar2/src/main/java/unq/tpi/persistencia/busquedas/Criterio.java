@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import exceptions.NoSePuedeEliminarCriterioDeBusquedaException;
-import unq.tpi.persistencia.Aerolinea;
-import unq.tpi.persistencia.Categoria;
 import unq.tpi.persistencia.Entidad;
 
 public abstract class Criterio extends Entidad {
@@ -25,12 +23,11 @@ public abstract class Criterio extends Entidad {
 		return criterios;
 	}
 	
+	
 	// Metodos de manipulaci�n de los criterios
 	
 	public abstract void and(Criterio otroCriterio);
 	
-	
-
 	public void removeLast() throws NoSePuedeEliminarCriterioDeBusquedaException{
 		try{
 			criteriosComplementarios.remove(criteriosComplementarios.size() - 1);
@@ -39,9 +36,4 @@ public abstract class Criterio extends Entidad {
 			throw new NoSePuedeEliminarCriterioDeBusquedaException();
 		}
 	}
-	
-	
-	
-	
-//	
 }
