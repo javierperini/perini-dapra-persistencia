@@ -13,6 +13,7 @@ public class Tramo extends Entidad{
 	private int fechaSalida;
 	private List<Asiento> asientos = new ArrayList<Asiento>();
 	private Vuelo miVuelo; 
+	private int duracionTramo;
 
 	/**
 	 * Es exclusivo para Hibernate no usar 
@@ -28,7 +29,7 @@ public class Tramo extends Entidad{
 		this.horaSalida = horaSalida;
 		this.fechaLlegada = fechaLlegada;
 		this.fechaSalida = fechaSalida;
-		
+		this.duracionTramo= this.calcularDuracion();
 	}
 	
 	public Tramo(String origen, String destino, Integer precio, int horaLlegada, int horaSalida, Vuelo miVuelo,int fechaDeEntrada, int fechaSalida){
@@ -40,8 +41,14 @@ public class Tramo extends Entidad{
 		this.miVuelo = miVuelo;
 		this.fechaLlegada =fechaDeEntrada;
 		this.fechaSalida = fechaSalida;
+		this.duracionTramo= this.calcularDuracion();
+		
 	}
 	
+	private int calcularDuracion() {
+		return (this.getFechaLlegada() -this.getFechaSalida())*24 + (this.getHoraLlegada()-this.getHoraSalida());
+	}
+
 	public Tramo(String origen, String destino, Integer precio, 
 			int horaLlegada, int horaSalida, Vuelo miVuelo , List<Asiento> asientos, int fechaLlegada ,int fechaSalida){
 		this.origen = origen;
@@ -53,6 +60,7 @@ public class Tramo extends Entidad{
 		this.setAsientos(asientos);
 		this.fechaLlegada = fechaLlegada;
 		this.fechaSalida = fechaSalida;
+		this.duracionTramo= this.calcularDuracion();
 		
 	}
 	
@@ -145,6 +153,14 @@ public class Tramo extends Entidad{
 
 	public void setFechaLlegada(int fechaLlegada) {
 		this.fechaLlegada = fechaLlegada;
+	}
+
+	public int getDuracionTramo() {
+		return duracionTramo;
+	}
+
+	public void setDuracionTramo(int duracionVuelo) {
+		this.duracionTramo = duracionVuelo;
 	}
 	
 }
