@@ -12,9 +12,7 @@
               <column name="nroAsiento" length="20" not-null="true" unique="false" />
         </property>
 
-        <property name="precioPorCategoria" type="java.lang.Integer">
-            <column name="precioDeCategoria" length="20" not-null="true" unique="false" />
-        </property>
+        <many-to-one name="unaCategoria" column="idCategoria" cascade="all"  />
         
        <many-to-one name="tramo" column="idTramo"  />
        <many-to-one name="reservadoPor" column="idUsuario"  />

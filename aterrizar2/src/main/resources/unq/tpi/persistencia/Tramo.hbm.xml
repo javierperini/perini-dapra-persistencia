@@ -35,6 +35,9 @@
             <column name="fechaLlegada" not-null="false" unique="false"/>
         </property>
       
+      	<property name="duracionTramo" type="int">
+            <column name="duracionTramo" not-null="false" unique="false"/>
+        </property>
         
         <bag name="asientos" cascade="all-delete-orphan" inverse="true"> 
             <key column="idAsiento" /> 
