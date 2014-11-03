@@ -21,4 +21,9 @@ class SinCriterioDeBusqueda extends EstrategiaCriterioDeBusqueda {
 		this.agregarCriterio(unCriterio);
 	}
 
+	@Override
+	protected String getCriterio() {
+		return " ";
+	}
+
 }

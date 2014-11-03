@@ -12,4 +12,8 @@ public class SinCriterioDeOrden extends EstrategiaCriterioDeOrden {
 		this.busquedaActual.setEstrategiaCriterioDeOrden(new ConCriterioDeOrden(this.busquedaActual));
 	}
 
+	@Override
+	protected String getCriterio() {
+		return " ";
+	}
 }
