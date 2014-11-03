@@ -15,5 +15,9 @@ class ConCriterioDeBusqueda extends EstrategiaCriterioDeBusqueda {
 	protected void or(CriterioBusqueda unCriterio) {
 		this.busquedaActual.orCriterioDeBusqueda(unCriterio);
 	}
+	
+	protected String getCriterio(){
+		return this.busquedaActual.getCriterioDeBusqueda().getCriterio();
+	}
 
 }
