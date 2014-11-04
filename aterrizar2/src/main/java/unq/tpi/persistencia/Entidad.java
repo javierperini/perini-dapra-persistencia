@@ -1,7 +1,5 @@
 package unq.tpi.persistencia;
 
-import java.math.BigDecimal;
-
 public class Entidad {
 	Integer id;
 	
