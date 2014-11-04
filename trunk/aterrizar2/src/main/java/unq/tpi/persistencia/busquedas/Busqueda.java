@@ -1,26 +1,21 @@
 package unq.tpi.persistencia.busquedas;
 
-import java.util.List;
-
-import org.hibernate.Query;
-
 import exceptions.NoSePuedeEliminarCriterioDeBusquedaException;
-import exceptions.PrimerCriterioDebeSerSinConectorException;
-import exceptions.SoloPrimerCriterioDebeSerSinConectorException;
 import unq.tpi.persistencia.Entidad;
-import unq.tpi.persistencia.Vuelo;
-import unq.tpi.persistencia.daos.SessionManager;
+import unq.tpi.persistencia.Usuario;
 
 public class Busqueda extends Entidad {
 
 	private CriterioBusqueda criterioDeBusqueda;
-	private HistorialDeBusqueda miHistorial;
+
 	private CriterioDeOrden criterioDeOrden;
 	private String query;
+	private Usuario usuario;
 	
-	public Busqueda (){
-		miHistorial= new HistorialDeBusqueda();
-		this.query="from Vuelo as this inner join this.tramos as t inner join t.asientos as a inner join a.unaCategoria";
+	public Busqueda (Usuario usuario){
+		
+		this.usuario=usuario;
+		this.query=" ";
 
 	}
 
@@ -57,23 +52,22 @@ public class Busqueda extends Entidad {
 	
 	public void armarBusqueda(){
 		if(criterioDeBusqueda ==null){
-			query.concat(criterioDeOrden.getCriterio());
+			this.query.concat(criterioDeOrden.getCriterio());
 		}
 		if (criterioDeOrden ==null){
-			query.concat(criterioDeBusqueda.getCriterio());
+			this.query.concat(criterioDeBusqueda.getCriterio());
 		}
 		if(criterioDeBusqueda !=null && criterioDeOrden !=null){
-			query.concat(criterioDeBusqueda.getCriterio());
-			query.concat(criterioDeOrden.getCriterio());
+			this.query.concat(criterioDeBusqueda.getCriterio());
+			this.query.concat(criterioDeOrden.getCriterio());
 		}
 	}
-	public List<Vuelo> ejecutarBusqueda(){
-		this.armarBusqueda();
-		miHistorial.agregar(query);
-		Query q= SessionManager.getSession().createQuery(query);
-		List<Vuelo> busqueda = q.list();
-		return busqueda;
+
+	public Usuario getUsuario() {
+		return usuario;
 	}
 
-	
+	public String getQuery(){
+		return this.query;
+	}
 }
