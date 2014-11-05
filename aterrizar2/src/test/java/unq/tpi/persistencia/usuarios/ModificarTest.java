@@ -8,7 +8,7 @@ public class ModificarTest extends SetUpCliente {
 	
 	public void testApp() throws Exception {
 		Modificar consulta= new Modificar(usuario.getId(),"Juanca");
-		Usuario u = new Manager<Usuario>().modificar(consulta);
+		Usuario u = new Manager<Usuario>().ejecutar(consulta);
 		assertEquals("Juanca", u.getNombre());
 	}
 }

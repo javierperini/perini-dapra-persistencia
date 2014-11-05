@@ -16,22 +16,12 @@ public class Manager<T> implements Operation<List<T>> {
 		public Manager(String consulta){
 			this.consulta=consulta;
 		}
-		public T consultar(Operation<T>  consulta) {
-			return SessionManager.runInSession(consulta);
-		}
-		
+
 		public T ejecutar(Operation<T>  consulta) {
 			return SessionManager.runInSession(consulta);
 		}
 
-		public T crear(Operation<T>  consulta) {
-			return SessionManager.runInSession(consulta);
-		}
 
-		public T modificar(Operation<T>  consulta) {
-			return SessionManager.runInSession(consulta);
-		}
-		
 		public Object session(String consulta){
 			return	null;
 		}

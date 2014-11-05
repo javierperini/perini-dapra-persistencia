@@ -67,7 +67,24 @@ public class ReservardorDeAsiento implements Operation<List<Asiento>>{
 
 	
 	public boolean estanLibres(List<Asiento> asientos, List<Asiento> asientosReq){
-		return !asientos.isEmpty() && asientos.containsAll(asientosReq);
+		return !asientos.isEmpty() && this.loContiene(asientos, asientosReq);
+	}
+	public  boolean loContiene(List<Asiento> asientos, List<Asiento> asientosReq){
+		 int contador=0;
+		for (Asiento a: asientos){
+			if(this.estaEn(a,asientosReq)){
+				 contador++; 
+				}
+			}
+		return contador==asientosReq.size();
+	}
+
+	private boolean estaEn(Asiento a, List<Asiento> asientosReq) {
+		for (Asiento b: asientosReq){
+		    if(b.getNro()==(a.getNro()))
+		    	return true;
+		}		
+		return false;
 	}
 
 }
