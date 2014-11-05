@@ -2,39 +2,37 @@ package unq.tpi.persistencia.busquedas;
 
 public class CriterioDeOrden extends Criterio {
 
-	public CriterioDeOrden(String criterio) {
-		super(criterio);		
+	public CriterioDeOrden(){
+		
 	}
 	
-	@Override
-	public String getCriterio(){
-		return " group by idTramo  order by "+ super.getCriterio();
+	public CriterioDeOrden(String criterio) {
+		super(criterio);
+		
 	}
 
-	
-	// Metodos de manipulaci�n de los criterios
-	
 	@Override
 	public void and(Criterio otroCriterio) {
-		criteriosComplementarios.add(new CriterioDeOrden(",".concat(otroCriterio.getCriterio())));	
+		getCriteriosComplementarios().add(new CriterioDeOrden(",".concat(otroCriterio.getCriterio())));	
 	}
-	
-	
-	// Factory Methods para crear diferentes criterios de busqueda
 	
 	private static CriterioDeOrden armarCriterio(String funcion, String columna ){
 		return new CriterioDeOrden(funcion +" ( " + columna+ " ) ASC");
 	}
 	
 	public static CriterioDeOrden ordernarPorDuracion(){
-		return CriterioDeOrden.armarCriterio("sum","duracionTramo");
+		return CriterioDeOrden.armarCriterio("sum","t.duracionTramo");
 	}
-	
 	public static CriterioDeOrden ordernarPorMenorCosto(){
-		return CriterioDeOrden.armarCriterio("count","idTramo");
+		return CriterioDeOrden.armarCriterio("count","t.idTramo");
 	}
-	
 	public static CriterioDeOrden ordernarPorMenorCantidadDeEscalas(){
-		return CriterioDeOrden.armarCriterio("sum","duracion");
-	}	
+		return CriterioDeOrden.armarCriterio("sum","this.duracion");
+	}
+	@Override
+	public String getCriterio(){
+		return " group by idTramo  order by "+ super.getCriterio();
+	}
+
+	
 }
