@@ -9,10 +9,10 @@
             <generator class="identity" />
         </id>
         
-        <bag name="criteriosDeBusqueda" cascade="all-delete-orphan" inverse="false"> 
-            <key column="criterios" />
-            <one-to-many class="unq.tpi.persistencia.busquedas.CriterioDeBusqueda" /> 
-        </bag>  
-                        
+        <many-to-one name="criterioDeBusqueda"  cascade="all"/> 
+        <many-to-one name="criterioDeOrden" cascade="all" /> 
+        
+        <many-to-one name="usuario" column="usuario" cascade="all"  />
+                                
     </class>
 </hibernate-mapping>

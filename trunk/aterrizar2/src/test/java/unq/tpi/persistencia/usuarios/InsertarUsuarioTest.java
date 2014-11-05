@@ -7,9 +7,6 @@ import unq.tpi.persistencia.servicios.usuario.Crear;
 
 public class InsertarUsuarioTest extends SetUpCliente{
 	public void testApp() throws Exception {
-		new Manager<Usuario>().crear(new Crear<Usuario>(new Usuario("JuanCito")));
+		new Manager<Usuario>().ejecutar(new Crear<Usuario>(new Usuario("JuanCito")));
 	}
-	
-	
-	
 }
