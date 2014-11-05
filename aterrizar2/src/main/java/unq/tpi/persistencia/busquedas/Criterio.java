@@ -11,6 +11,10 @@ public abstract class Criterio extends Entidad {
 	private String criterio;
 	protected List<Criterio> criteriosComplementarios = new ArrayList<Criterio>();
 
+	public Criterio(){
+		
+	}
+	
 	public Criterio(String criterio){
 		this.criterio = criterio;
 	}
@@ -22,7 +26,6 @@ public abstract class Criterio extends Entidad {
 		}
 		return criterios;
 	}
-	
 	
 	// Metodos de manipulaci�n de los criterios
 	
@@ -36,4 +39,21 @@ public abstract class Criterio extends Entidad {
 			throw new NoSePuedeEliminarCriterioDeBusquedaException();
 		}
 	}
+
+	public void setCriterio(String criterio) {
+		this.criterio = criterio;
+	}
+
+	public List<Criterio> getCriteriosComplementarios() {
+		return criteriosComplementarios;
+	}
+
+	public void setCriteriosComplementarios(List<Criterio> criteriosComplementarios) {
+		this.criteriosComplementarios = criteriosComplementarios;
+	}
+	
+	
+	
+	
+//	
 }
