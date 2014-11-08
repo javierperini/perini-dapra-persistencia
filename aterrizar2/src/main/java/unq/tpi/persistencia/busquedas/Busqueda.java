@@ -12,6 +12,22 @@ public class Busqueda extends Entidad {
 	private String query;
 	private Usuario usuario;
 	
+	public EstrategiaCriterioDeBusqueda getEstrategiaCriterioDeBusqueda() {
+		return estrategiaCriterioDeBusqueda;
+	}
+
+	public EstrategiaCriterioDeOrden getEstrategiaCriterioDeOrden() {
+		return estrategiaCriterioDeOrden;
+	}
+
+	public void setQuery(String query) {
+		this.query = query;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
 	public Busqueda (Usuario usuario){
 		this.usuario = usuario;
 		this.query = " ";
