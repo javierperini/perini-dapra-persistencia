@@ -76,14 +76,11 @@ public abstract class SetUpCliente extends AbstractHibernateTest{
 		chinaBsAs.agregarAsiento(b2);
 		chinaBsAs.agregarAsiento(b3);
 		
-		unaBusqueda = new Busqueda(usuario);
-		unaBusqueda.setCriterioDeBusqueda(CriterioBusqueda.busquedaPorAerolinea(tas));
-		unaBusqueda.setCriterioDeOrden(CriterioDeOrden.ordernarPorDuracion());
+		
 		
 		
 		new Manager<Usuario>().ejecutar(new Crear<Usuario>(usuario));
 		new Manager<Empresa>().ejecutar(new Crear<Empresa>(asatej));
-		new Manager<Busqueda>().ejecutar(new Crear<Busqueda>(unaBusqueda));
 
 	}
 	
