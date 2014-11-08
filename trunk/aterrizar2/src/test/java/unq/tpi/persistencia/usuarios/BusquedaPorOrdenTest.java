@@ -20,6 +20,7 @@ import unq.tpi.persistencia.servicios.Manager;
 import unq.tpi.persistencia.servicios.Operation;
 import unq.tpi.persistencia.servicios.usuario.Buscador;
 import unq.tpi.persistencia.servicios.usuario.Consultar;
+import unq.tpi.persistencia.servicios.usuario.Crear;
 import unq.tpi.persistencia.servicios.usuario.EstaReservadoExeption;
 import unq.tpi.persistencia.servicios.usuario.ReservardorDeAsiento;
 
@@ -35,6 +36,12 @@ public class BusquedaPorOrdenTest extends SetUpCliente{
 		SessionManager.runInSession(new Operation<Void>()  {
 
 			public Void execute()  {
+				unaBusqueda = new Busqueda(usuario);
+				unaBusqueda.setCriterioDeBusqueda(CriterioBusqueda.busquedaPorAerolinea(tas));
+				unaBusqueda.setCriterioDeOrden(CriterioDeOrden.ordernarPorDuracion());
+				
+
+				new Manager<Busqueda>().ejecutar(new Crear<Busqueda>(unaBusqueda));
 				
 				List<Vuelo> vuelos = new Buscador(unaBusqueda).ejecutarBusqueda();
 				List<Vuelo> vuelosAnt = new Buscador(unaBusqueda).ejecutarAnterior(unaBusqueda.getId());
