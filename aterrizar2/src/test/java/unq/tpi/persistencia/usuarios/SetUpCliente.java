@@ -8,6 +8,9 @@ import unq.tpi.persistencia.Empresa;
 import unq.tpi.persistencia.Tramo;
 import unq.tpi.persistencia.Usuario;
 import unq.tpi.persistencia.Vuelo;
+import unq.tpi.persistencia.busquedas.Busqueda;
+import unq.tpi.persistencia.busquedas.CriterioBusqueda;
+import unq.tpi.persistencia.busquedas.CriterioDeOrden;
 import unq.tpi.persistencia.servicios.Manager;
 import unq.tpi.persistencia.servicios.usuario.Borrar;
 import unq.tpi.persistencia.servicios.usuario.Crear;
@@ -31,8 +34,10 @@ public abstract class SetUpCliente extends AbstractHibernateTest{
 	Categoria primera;
 	Categoria ejecutivo;
 	Categoria turista;
+	Busqueda unaBusqueda;
 	
 	public void setUp(){
+		
 		usuario = new Usuario("Luciano");
 		asatej = new Empresa("Asatej");
 		lan = new Aerolinea("Lan", asatej);
@@ -70,8 +75,16 @@ public abstract class SetUpCliente extends AbstractHibernateTest{
 		argentinaBrasil.agregarAsiento(a3);
 		chinaBsAs.agregarAsiento(b2);
 		chinaBsAs.agregarAsiento(b3);
+		
+		unaBusqueda = new Busqueda(usuario);
+		unaBusqueda.setCriterioDeBusqueda(CriterioBusqueda.busquedaPorAerolinea(tas));
+		unaBusqueda.setCriterioDeOrden(CriterioDeOrden.ordernarPorDuracion());
+		
+		
 		new Manager<Usuario>().ejecutar(new Crear<Usuario>(usuario));
 		new Manager<Empresa>().ejecutar(new Crear<Empresa>(asatej));
+		new Manager<Busqueda>().ejecutar(new Crear<Busqueda>(unaBusqueda));
+
 	}
 	
 	public void tearDown(){

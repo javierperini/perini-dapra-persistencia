@@ -35,9 +35,7 @@ public class BusquedaPorOrdenTest extends SetUpCliente{
 		SessionManager.runInSession(new Operation<Void>()  {
 
 			public Void execute()  {
-				Busqueda unaBusqueda = new Busqueda(usuario);
-				unaBusqueda.setCriterioDeBusqueda(CriterioBusqueda.busquedaPorAerolinea(tas));
-				unaBusqueda.setCriterioDeOrden(CriterioDeOrden.ordernarPorDuracion());
+				
 				List<Vuelo> vuelos = new Buscador(unaBusqueda).ejecutarBusqueda();
 				List<Vuelo> vuelosAnt = new Buscador(unaBusqueda).ejecutarAnterior(unaBusqueda.getId());
 				assertTrue(vuelos == vuelosAnt);
