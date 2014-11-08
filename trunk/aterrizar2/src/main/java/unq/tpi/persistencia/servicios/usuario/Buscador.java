@@ -16,7 +16,7 @@ public class Buscador {
 	private Busqueda busqueda;
 
 	public Buscador(Busqueda busqueda){
-		this.query= "select this from Vuelo as this inner join this.tramos as t inner join t.asientos as a inner join a.unaCategoria";
+		this.query= "select this from Vuelo as this inner join this.unosTramos as t inner join t.asientos as a inner join a.unaCategoria";
 		this.busqueda=busqueda;
 	}
 	

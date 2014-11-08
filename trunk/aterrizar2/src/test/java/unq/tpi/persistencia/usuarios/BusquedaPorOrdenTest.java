@@ -43,8 +43,8 @@ public class BusquedaPorOrdenTest extends SetUpCliente{
 
 				Buscador unBuscador = new Buscador(unaBusqueda);
 				unBuscador.guardaBusqueda(unaBusqueda);
-				List<Vuelo> vuelos = new Buscador(unaBusqueda).ejecutarBusqueda();
-				List<Vuelo> vuelosAnt = new Buscador(unaBusqueda).ejecutarAnterior(unaBusqueda.getId());
+				List<Vuelo> vuelos = unBuscador.ejecutarBusqueda();
+				List<Vuelo> vuelosAnt = unBuscador.ejecutarAnterior(unaBusqueda.getId());
 				assertTrue(vuelos == vuelosAnt);
 				return null;
 			}
