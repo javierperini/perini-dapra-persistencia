@@ -36,7 +36,7 @@ public class Buscador {
 		return busqueda;
 	}
 
-	private void guardaBusqueda(Busqueda unaBusqueda) {
+	public void guardaBusqueda(Busqueda unaBusqueda) {
 		new Manager<Busqueda>().ejecutar(new Crear<Busqueda>(unaBusqueda));		
 	}
 	
