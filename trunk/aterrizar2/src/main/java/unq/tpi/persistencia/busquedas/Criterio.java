@@ -19,10 +19,10 @@ public abstract class Criterio extends Entidad {
 		this.criterio = criterio;
 	}
 	
-	public String getCriterio(){
+	public String getCriterioAEjecutarSinWhere(){
 		String criterios = this.criterio;
 		for(Criterio c: this.criteriosComplementarios){
-			criterios = criterios.concat(c.getCriterio());
+			criterios = criterios.concat(c.getCriterioAEjecutarSinWhere());
 		}
 		return criterios;
 	}
@@ -53,7 +53,9 @@ public abstract class Criterio extends Entidad {
 	}
 	
 	
-	
+	public String getCriterio() {
+		return criterio;
+	}
 	
 //	
 }

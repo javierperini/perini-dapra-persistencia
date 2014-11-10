@@ -17,7 +17,7 @@ class ConCriterioDeBusqueda extends EstrategiaCriterioDeBusqueda {
 	}
 	
 	protected String getCriterio(){
-		return this.busquedaActual.getCriterioDeBusqueda().getCriterio();
+		return this.busquedaActual.getCriterioDeBusqueda().getCriterioAEjecutar();
 	}
 
 }

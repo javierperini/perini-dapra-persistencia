@@ -1,5 +1,6 @@
 package unq.tpi.persistencia.busquedas;
 
+import unq.tpi.persistencia.Aerolinea;
 import unq.tpi.persistencia.Categoria;
 import unq.tpi.persistencia.Entidad;
 
@@ -14,16 +15,16 @@ public class CriterioBusqueda extends Criterio {
 	
 	@Override
 	public void and(Criterio otroCriterio){
-		getCriteriosComplementarios().add(new CriterioBusqueda(" and ".concat(otroCriterio.getCriterio())));
+		getCriteriosComplementarios().add(new CriterioBusqueda(" and ".concat(otroCriterio.getCriterioAEjecutarSinWhere())));
 	}
 	
-	@Override
-	public String getCriterio(){
-		return "where "+ super.getCriterio();
+	
+	public String getCriterioAEjecutar(){
+		return "where "+ getCriterioAEjecutarSinWhere();
 	}
 	
 	public void or(Criterio otroCriterio){
-		getCriteriosComplementarios().add(new CriterioBusqueda(" or ".concat(otroCriterio.getCriterio())));
+		getCriteriosComplementarios().add(new CriterioBusqueda(" or ".concat(otroCriterio.getCriterioAEjecutarSinWhere())));
 		
 	}
 
@@ -34,28 +35,28 @@ public class CriterioBusqueda extends Criterio {
 			return new CriterioBusqueda(condicion + elementoAmatchear);
 		}
 		
-		public static CriterioBusqueda busquedaPorAerolinea(Entidad unaAerolinea){
-			return armarCriterio ("this.idAerolinea = ", unaAerolinea.getId().toString());
+		public static CriterioBusqueda busquedaPorAerolinea(Aerolinea unaAerolinea){
+			return armarCriterio ("aerolinea.nombre = '", unaAerolinea.getNombre() +"'");
 		}
 		
 		public static CriterioBusqueda busquedaPorCategoriaDeAsiento(Categoria unaCategoria){
-			return armarCriterio ("idCategoria = ", unaCategoria.getId().toString());
+			return armarCriterio ("categoria.nombre = '", unaCategoria.getNombre() +"'") ;
 		}
 		
 		public static CriterioBusqueda busquedaPorFechaDeSalida(Integer unaFechaDeSalida){
-			return armarCriterio ("fechaSalida = ", unaFechaDeSalida.toString());
+			return armarCriterio ("t.fechaSalida = '", unaFechaDeSalida.toString() +"'" );
 		}
 		
 		public static CriterioBusqueda busquedaPorFechaDeLlegada(Integer unaFechaDeLlegada){
-			return armarCriterio ("fechaLlegada = ", unaFechaDeLlegada.toString());
+			return armarCriterio ("t.fechaLlegada = '", unaFechaDeLlegada.toString() +"'");
 		}
 		
 		public static CriterioBusqueda busquedaPorOrigen(String unOrigen){
-			return armarCriterio ("origen = ",  unOrigen);
+			return armarCriterio ("t.origen = '",  unOrigen +"'");
 		}
 		
 		public static CriterioBusqueda busquedaPorDestino(String unDestino){
-			return armarCriterio ("destino = ",  unDestino);
+			return armarCriterio ("t.destino = '",  unDestino +"'");
 		}
 		
 

@@ -4,11 +4,9 @@ import java.util.List;
 
 import org.hibernate.Query;
 
-import unq.tpi.persistencia.Empresa;
 import unq.tpi.persistencia.Vuelo;
 import unq.tpi.persistencia.busquedas.Busqueda;
 import unq.tpi.persistencia.daos.SessionManager;
-import unq.tpi.persistencia.servicios.Manager;
 
 public class Buscador {
 	
@@ -16,16 +14,29 @@ public class Buscador {
 	private Busqueda busqueda;
 
 	public Buscador(Busqueda busqueda){
-		this.query= "select this from Vuelo as this inner join this.unosTramos as t inner join t.asientos as a inner join a.unaCategoria";
+		this.query= "select this from Vuelo as this left join this.miAerolinea as aerolinea left join this.unosTramos as t left join t.asientos as a left join a.unaCategoria as categoria";
 		this.busqueda=busqueda;
 	}
 	
+	public Busqueda getBusqueda() {
+		return busqueda;
+	}
+
+	public void setBusqueda(Busqueda busqueda) {
+		this.busqueda = busqueda;
+	}
+
+	public void setQuery(String query) {
+		this.query = query;
+	}
+
+	public String getQuery() {
+		return query;
+	}
+
 	public List<Vuelo> ejecutarBusqueda(){
 		this.busqueda.armarBusqueda();
-		this.guardaBusqueda(this.busqueda);
-		List<Vuelo> busqueda = ejecutar(this.busqueda);
-		
-		return busqueda;
+		return ejecutar(this.busqueda);
 	}
 
 	private List<Vuelo> ejecutar(Busqueda unaBusqueda) {
@@ -37,11 +48,13 @@ public class Buscador {
 	}
 
 	public void guardaBusqueda(Busqueda unaBusqueda) {
-		new Manager<Busqueda>().ejecutar(new Crear<Busqueda>(unaBusqueda));		
+		new Crear<Busqueda>(unaBusqueda).execute();		
 	}
 	
+	
+	
 	public List<Vuelo> ejecutarAnterior(int idBusqueda){
-		Busqueda b=new Manager<Busqueda>().ejecutar(new Consultar<Busqueda>(Busqueda.class, idBusqueda));
+		Busqueda b= new Consultar<Busqueda>(Busqueda.class, idBusqueda).execute();
 		return ejecutar(b);
 	}
 	
