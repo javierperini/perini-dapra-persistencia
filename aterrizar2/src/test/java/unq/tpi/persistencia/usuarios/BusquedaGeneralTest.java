@@ -12,13 +12,15 @@ import unq.tpi.persistencia.servicios.usuario.Buscador;
 
 public class BusquedaGeneralTest extends SetUpCliente {
 
-	public void testOrdernarPorMenorCantidadDeEscalasYPorMenorCosto(){
+	public void testCombinacionDeCriterios(){
 		SessionManager.runInSession(new Operation<Void>()  {
 
 			public Void execute()  {
 				unaBusqueda = new Busqueda(usuario);
 				unaBusqueda.setCriterioDeOrden(CriterioDeOrden.ordernarPorMenorCantidadDeEscalas());
 				unaBusqueda.setCriterioDeBusqueda(CriterioBusqueda.busquedaPorDestino("Brasil"));
+				unaBusqueda.andCriterio(CriterioDeOrden.ordernarPorMenorCosto());
+				unaBusqueda.andCriterio(CriterioBusqueda.busquedaPorFechaDeLlegada(6));
 				Buscador unBuscador = new Buscador(unaBusqueda);
 				unBuscador.guardaBusqueda(unaBusqueda);
 				List<Vuelo> vuelos = unBuscador.ejecutarBusqueda();
