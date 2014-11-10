@@ -45,7 +45,8 @@ public class ReservardorDeAsiento implements Operation<List<Asiento>>{
 		List<Asiento> asientos = consultaAsientosDisponibles();
 		 if(this.estanLibres(asientos, asientosReq)){
 			 for(Asiento a : asientos)
-				try {if(asientosReq.contains(a))
+				try {
+					if(asientosReq.contains(a))
 						this.reservar(a);
 				}catch(EstaReservadoExeption e){
 					this.sacarReserva(asientos);
