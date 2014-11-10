@@ -13,7 +13,7 @@ public class CriterioDeOrden extends Criterio {
 
 	@Override
 	public void and(Criterio otroCriterio) {
-		getCriteriosComplementarios().add(new CriterioDeOrden(",".concat(otroCriterio.getCriterio())));	
+		getCriteriosComplementarios().add(new CriterioDeOrden(",".concat(otroCriterio.getCriterioAEjecutarSinWhere())));	
 	}
 	
 	private static CriterioDeOrden armarCriterio(String funcion, String columna ){
@@ -24,14 +24,14 @@ public class CriterioDeOrden extends Criterio {
 		return CriterioDeOrden.armarCriterio("sum","t.duracionTramo");
 	}
 	public static CriterioDeOrden ordernarPorMenorCosto(){
-		return CriterioDeOrden.armarCriterio("count","t.idTramo");
+		return CriterioDeOrden.armarCriterio("sum","'t.idTramo'");
 	}
 	public static CriterioDeOrden ordernarPorMenorCantidadDeEscalas(){
-		return CriterioDeOrden.armarCriterio("sum","this.duracion");
+		return CriterioDeOrden.armarCriterio("count","t");
 	}
-	@Override
-	public String getCriterio(){
-		return " group by idTramo  order by "+ super.getCriterio();
+	
+	public String getCriterioAEjecutar(){
+		return " group by 't.idTramo'  order by "+ super.getCriterioAEjecutarSinWhere();
 	}
 
 	

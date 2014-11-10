@@ -49,6 +49,7 @@ public class Busqueda extends Entidad {
 
 	public void setCriterioDeBusqueda(CriterioBusqueda criterioDeBusqueda) {
 		this.criterioDeBusqueda = criterioDeBusqueda;
+		this.setEstrategiaCriterioDeBusqueda(new ConCriterioDeBusqueda(this));
 	}
 
 	public CriterioDeOrden getCriterioDeOrden() {
@@ -57,6 +58,7 @@ public class Busqueda extends Entidad {
 
 	public void setCriterioDeOrden(CriterioDeOrden criteriosDeOrden) {
 		this.criterioDeOrden = criteriosDeOrden;
+		this.setEstrategiaCriterioDeOrden(new ConCriterioDeOrden(this));
 	}
 
 	

@@ -13,7 +13,7 @@ public class ConCriterioDeOrden extends EstrategiaCriterioDeOrden {
 
 	@Override
 	protected String getCriterio() {
-		return this.busquedaActual.getCriterioDeOrden().getCriterio();
+		return this.busquedaActual.getCriterioDeOrden().getCriterioAEjecutar();
 	}
 
 }
