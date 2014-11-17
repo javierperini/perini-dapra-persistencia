@@ -12,7 +12,7 @@ public class DepartmentDAO {
 	public Department getByName(final String name) {
 		Session session = SessionManager.getSession();
 		return (Department) session
-				.createQuery("from Department where name = :name")
+				.createQuery("from Department where name = :name").setCacheable(true)
 				.setParameter("name", name).uniqueResult();
 	}
 
