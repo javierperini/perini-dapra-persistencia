@@ -5,6 +5,9 @@
 <hibernate-mapping>
 	<class name="unq.tpi.persistencia.performanceEj.model.Department"
 		table="departments">
+		
+		<cache usage="read-write"/>
+		
 		<id name="number">
 			<column name="dept_no" sql-type="char(4)" />
 			<generator class="identity" />

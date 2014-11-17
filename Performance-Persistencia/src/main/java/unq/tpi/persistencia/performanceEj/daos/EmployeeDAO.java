@@ -21,7 +21,7 @@ public class EmployeeDAO {
 	@SuppressWarnings("unchecked")
 	public List<Employee> getAll() {
 		Session session = SessionManager.getSession();
-		return session.createCriteria(Employee.class).list();
+		return session.createCriteria(Employee.class).setCacheable(true).list();
 	}
 
 	public Employee getByCode(int id) {

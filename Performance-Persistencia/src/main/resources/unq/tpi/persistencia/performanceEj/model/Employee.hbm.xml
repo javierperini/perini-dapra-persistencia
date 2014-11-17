@@ -5,6 +5,9 @@
 <hibernate-mapping>
 	<class name="unq.tpi.persistencia.performanceEj.model.Employee"
 		table="employees">
+		
+		<cache usage="read-write"/>
+		
 		<id name="id" type="java.lang.Integer">
 			<column name="emp_no" />
 			<generator class="identity" />

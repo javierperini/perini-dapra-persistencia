@@ -13,7 +13,17 @@
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
         <property name="hibernate.hbm2ddl.auto">validate</property>
         <property name="show_sql">true</property>
-
+        
+        <!--  
+        <property name="cache.use_second_level_cache">true</property>
+        <property name="cache.use_query_cache">true</property>
+        -->
+        
+        <property name="hibernate.cache.use_second_level_cache">true</property>
+        <property name="cache.use_query_cache">true</property>
+		<property name="hibernate.cache.region.factory_class">net.sf.ehcache.hibernate.EhCacheRegionFactory</property>
+		
+		
         <mapping resource="unq/tpi/persistencia/performanceEj/model/Employee.hbm.xml"></mapping>
         <mapping resource="unq/tpi/persistencia/performanceEj/model/Department.hbm.xml"></mapping>
         <mapping resource="unq/tpi/persistencia/performanceEj/model/Salary.hbm.xml"></mapping>
