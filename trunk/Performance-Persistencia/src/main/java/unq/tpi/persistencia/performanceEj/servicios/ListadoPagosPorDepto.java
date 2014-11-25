@@ -15,7 +15,9 @@ public class ListadoPagosPorDepto extends AbstractListado {
 
 	@Override
 	protected void doListado() throws Exception {
-		depto = new DepartmentDAO().getByCode(num);
+		
+		//depto = new DepartmentDAO().getByCodeFullNameTitleAndSalary(num);
+		//depto = new DepartmentDAO().getByCode(num);
 
 		this.newLine();
 		this.addColumn("Total").addColumn(depto.getTotalSalaries()).newLine();
