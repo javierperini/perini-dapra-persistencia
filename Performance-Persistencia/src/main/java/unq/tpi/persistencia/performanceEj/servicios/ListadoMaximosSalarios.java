@@ -16,12 +16,8 @@ public class ListadoMaximosSalarios extends AbstractListado{
 
 	@Override
 	protected void doListado() throws Exception {
-		List<Employee> empleados = new EmployeeDAO().getAll();
-		Collections.sort(empleados, new Comparator<Employee>() {
-			public int compare(Employee o1, Employee o2) {
-				return o2.getSalary().compareTo(o1.getSalary());
-			}
-		});
+		List<Employee> empleados = new EmployeeDAO().getMaximosSalarios();
+		
 		
 		addColumn("Nombre").addColumn("Sueldo").newLine();
 		
