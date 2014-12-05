@@ -1,13 +1,17 @@
 package unq.tpi.persistencia.performanceEj.servicios;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import unq.tpi.persistencia.performanceEj.daos.DepartmentDAO;
 import unq.tpi.persistencia.performanceEj.model.Department;
-import unq.tpi.persistencia.performanceEj.model.Employee;
+import unq.tpi.persistencia.performanceEj.model.ElementosDeUnFiltro;
 
 public class ListadoPagosPorDepto extends AbstractListado {
 
 	private String num;
 	private Department depto = null;
+	private List<ElementosDeUnFiltro> elem = new ArrayList<ElementosDeUnFiltro>();
 
 	public ListadoPagosPorDepto(String num) {
 		this.num = num;
@@ -16,24 +20,35 @@ public class ListadoPagosPorDepto extends AbstractListado {
 	@Override
 	protected void doListado() throws Exception {
 		
-		//depto = new DepartmentDAO().getByCodeFullNameTitleAndSalary(num);
+		elem = new DepartmentDAO().getByCodeFullNameTitleAndSalary(num);
 		//depto = new DepartmentDAO().getByCode(num);
 
 		this.newLine();
-		this.addColumn("Total").addColumn(depto.getTotalSalaries()).newLine();
+		//this.addColumn("Total").addColumn(depto.getTotalSalaries()).newLine();
+		
+		double suma = 0.0;
+		for (ElementosDeUnFiltro e : elem){
+			suma += e.getAmount();
+		}
+		
+		System.out.println(suma);
+		
+		this.addColumn("Total").addColumn(suma).newLine();
 		this.newLine();
 		
-		this.addColumn("Nombre");
+		this.addColumn("Nombre Completo");
 		this.addColumn("Titulo");
 		this.addColumn("Monto");
 		this.newLine();
-
-		for (Employee e : depto.getEmployees()) {
-			this.addColumn(e.getFullName());
-			this.addColumn(e.getTitle());
-			this.addColumn(e.getSalary());
+		
+		
+		for (ElementosDeUnFiltro e : elem) {
+			this.addColumn(e.fullName());
+			this.addColumn("");
+			this.addColumn(e.getAmount());
 			this.newLine();
 		}
+		
 	}
 
 	@Override

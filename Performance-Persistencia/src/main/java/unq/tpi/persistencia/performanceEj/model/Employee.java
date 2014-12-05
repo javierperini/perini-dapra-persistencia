@@ -1,6 +1,8 @@
 package unq.tpi.persistencia.performanceEj.model;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -15,6 +17,32 @@ public class Employee {
 	private Set<String> titles;
 	private List<String> historicTitles;
 	private List<Salary> salaries;
+	private double maxSalary;
+	
+	public Employee(String firstName, double amount, String title) {
+		this.firstName = firstName;
+		this.salaries = new ArrayList<Salary>();
+		Salary salary = new Salary();
+		salary.setAmount(amount);
+		this.salaries.add(salary);
+		this.titles = new HashSet<String>();
+		titles.add(title);
+	}
+	
+	public Employee(String firstName, double maxSalary){
+		this.firstName = firstName;
+		this.maxSalary = maxSalary;
+	}
+		
+	public double getMaxSalary() {
+		return maxSalary;
+	}
+
+	public void setMaxSalary(double maxSalary) {
+		this.maxSalary = maxSalary;
+	}
+	
+	
 	
 	public int getId() {
 		return id;

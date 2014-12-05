@@ -1,26 +1,25 @@
 package unq.tpi.persistencia.performanceEj.model;
 
-public class ElementosDeUnFiltro {
+import java.util.ArrayList;
+import java.util.List;
+
+public class ElementosDeUnFiltro {	
 	
-    private String firstName;
-    private String titles;
-    private int salary;
+    private  String firstName;
+    private  String lastName;
+    private List<String> titles = new ArrayList<String>();
+    private double amount = 0.0;
+    
+    public String fullName(){
+    	return this.firstName + " " + this.lastName;
+    }
 
-
-    public String getTitles() {
+    public List<String> getTitles() {
 		return titles;
 	}
 
 	public void setTitles(String title) {
-		this.titles = title;
-	}
-
-	public int getSalary() {
-		return salary;
-	}
-
-	public void setSalary(int salary) {
-		this.salary = salary;
+		this.titles.add(title);
 	}
 
 	public String getFirstName() {
@@ -30,4 +29,20 @@ public class ElementosDeUnFiltro {
     public void setFirstName(String name) {
         this.firstName = name;
     }
+
+	public double getAmount() {
+		return amount;
+	}
+
+	public void setAmount(double amount) {
+		this.amount = amount;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
 }
