@@ -18,6 +18,11 @@ public class Employee {
 	private List<String> historicTitles;
 	private List<Salary> salaries;
 	private double maxSalary;
+	private Date hireDate;
+	
+	public Employee(){
+		
+	}
 	
 	public Employee(String firstName, double amount, String title) {
 		this.firstName = firstName;
@@ -99,7 +104,7 @@ public class Employee {
 		return getDepartments().iterator().next();
 	}
 
-	private Date hireDate;
+	
 
 	public Set<Department> getDepartments() {
 		return departments;
