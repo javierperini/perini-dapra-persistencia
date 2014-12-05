@@ -3,6 +3,7 @@ package unq.tpi.persistencia;
 import java.text.SimpleDateFormat;
 
 import junit.framework.TestCase;
+import unq.tpi.persistencia.performanceEj.daos.EmployeeConOtroFiltro;
 import unq.tpi.persistencia.performanceEj.daos.EmployeeDAO;
 import unq.tpi.persistencia.performanceEj.model.Employee;
 import unq.tpi.persistencia.performanceEj.model.Gender;
@@ -15,10 +16,22 @@ public class EmployeeTest extends TestCase {
 		SessionManager.runInSession(new Operation<Object>() {
 			public Object execute() {
 				try {
+					//EmployeeConOtroFiltro e = new EmployeeDAO().getByName("Parto", "Hitomi");
 					Employee e = new EmployeeDAO().getByName("Parto", "Hitomi");
 					SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
 					assertNotNull(e);
+//					assertEquals(11052, e.getIdEmpleado());
+//					assertEquals(sdf.parse("1960-03-16"), e.getFechaNacimiento());
+//					assertEquals(Gender.F, e.getGenero());
+//					assertEquals(sdf.parse("1988-11-11"), e.getFechaContratacion());
+//					assertEquals(0,e.getCantidadDeptos());
+//					assertNull(e.getCantidadDeptos());
+//					assertEquals(2,e.getCantidadDeptosHistoricos());
+//					assertNull(e.getTitulo());					
+//					assertEquals(1,e.getTitulosHistoricos().size());	
+//					assertEquals(51339.0, e.getSalary());
+					
 					assertEquals(11052, e.getId());
 					assertEquals(sdf.parse("1960-03-16"), e.getBirthDate());
 					assertEquals(Gender.F, e.getGender());
@@ -29,6 +42,8 @@ public class EmployeeTest extends TestCase {
 					assertNull(e.getTitle());					
 					assertEquals(1,e.getHistoricTitles().size());	
 					assertEquals(51339.0, e.getSalary());
+					
+					
 					return null;
 				} catch (Exception e) {
 					throw new RuntimeException(e);

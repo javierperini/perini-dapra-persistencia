@@ -22,14 +22,44 @@ import unq.tpi.persistencia.util.SessionManager;
 public class EmployeeDAO {
 
 	public Employee getByName(final String name, final String lastName) {
+	//public EmployeeConOtroFiltro getByName(final String name, final String lastName) {
 		Session session = SessionManager.getSession();
 		return (Employee) session
 				.createQuery(
 						"from Employee where firstName = :name and lastName = :lastName").setCacheable(true)
 				.setParameter("name", name).setParameter("lastName", lastName)
 				.uniqueResult();
+		
+//		return (EmployeeConOtroFiltro) SessionManager.getSession()
+//		.createQuery("select new EmployeeConOtroFiltro(emp.id as idEmpleado , emp.birthDate as fechaNacimiento, "
+//				+ "emp.gender as genero, emp.hireDate as fechaContratacion, count(d) as cantidadDeptos, "
+//				+ "count(hd) as cantidadDeptosHistoricos, "
+//				+ "titulos, " +
+//				"titulosHistoricos, "
+//				+ "salaries) " +
+//				"from Employee emp " +
+//				"join emp.departments d " +
+//				"join emp.historicDepartments hd " +
+//				"join emp.titles titulos "+
+//				"join emp.historicTitles titulosHistoricos " + 
+//				"join emp.salaries salaries " +
+//				"where emp.salaries.to = '9999-01-01' and emp.firstName = :firstName and emp.lastName = :lastName ").setCacheable(true)
+//				.setParameter("firstName", name).setParameter("lastName", lastName)
+//				.uniqueResult();
 	}
 		
+//	assertEquals(11052, e.getId());
+//	assertEquals(sdf.parse("1960-03-16"), e.getBirthDate());
+//	assertEquals(Gender.F, e.getGender());
+//	assertEquals(sdf.parse("1988-11-11"), e.getHireDate());
+//	assertEquals(0,e.getDepartments().size());
+//	assertNull(e.getDepartment());
+//	assertEquals(2,e.getHistoricDepartments().size());
+//	assertNull(e.getTitle());					
+//	assertEquals(1,e.getHistoricTitles().size());	
+//	assertEquals(51339.0, e.getSalary());
+	
+	
 	
 	@SuppressWarnings("unchecked")
 	public List<Employee> getMaximosSalarios() {
