@@ -16,15 +16,26 @@ public class ListadoMaximosSalarios extends AbstractListado{
 
 	@Override
 	protected void doListado() throws Exception {
+//		List<Employee> empleados = new EmployeeDAO().getMaximosSalarios();
+//		
+//		
+//		addColumn("Nombre").addColumn("Sueldo").newLine();
+//		
+//		for(int i=0;i<10;i++){
+//			Employee e = empleados.get(i);
+//			addColumn(e.getFullName()).addColumn(e.getSalary()).newLine();
+//		}
+		
+		
 		List<Employee> empleados = new EmployeeDAO().getMaximosSalarios();
-		
-		
+	
 		addColumn("Nombre").addColumn("Sueldo").newLine();
 		
-		for(int i=0;i<10;i++){
-			Employee e = empleados.get(i);
-			addColumn(e.getFullName()).addColumn(e.getSalary()).newLine();
+		for(Employee employe:empleados){
+			addColumn(employe.getFirstName()).addColumn(employe.getMaxSalary()).newLine();
 		}
+		
+		
 	}
 
 }

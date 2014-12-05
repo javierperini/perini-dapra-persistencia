@@ -1,5 +1,6 @@
 package unq.tpi.persistencia.performanceEj.daos;
 
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.FetchMode;
@@ -26,27 +27,36 @@ public class DepartmentDAO {
 		return (Department) session.get(Department.class, num);
 	}
 
-	@SuppressWarnings("unchecked")
-	public List<Department> getAll() {
-		Session session = SessionManager.getSession();
-		return session.createCriteria(Department.class).list();
-	}
+	
 
-	public ElementosDeUnFiltro getByCodeFullNameTitleAndSalary(String num) {
+	public List<ElementosDeUnFiltro> getByCodeFullNameTitleAndSalary(String num) {
 		Session session = SessionManager.getSession();		
-		return (ElementosDeUnFiltro) session.createCriteria(Department.class)
+		return (List<ElementosDeUnFiltro>) session.createCriteria(Department.class)
 				.add(Restrictions.eq("number",num))
-				.setFetchMode("employees", FetchMode.JOIN)
-				.setFetchMode("employees.salaries", FetchMode.JOIN)
-				.setFetchMode("employees.titles", FetchMode.JOIN)
+				//.setFetchMode("employees", FetchMode.JOIN)
+				//.setFetchMode("employees.salaries", FetchMode.JOIN)
+				//.setFetchMode("employees.titles", FetchMode.JOIN)
 				.createAlias("employees", "employee")
 				.createAlias("employee.salaries", "salarios")
+//				.add(Restrictions.eq("salarios.to", "9999-01-01"))
 				.setProjection(Projections.projectionList()
 						.add(Projections.property("employee.firstName"),"firstName")
-						.add(Projections.property("employee.titles"),"titles")
-						.add(Projections.property("salarios.amount")))
+						.add(Projections.property("employee.lastName"),"lastName")
+						//.add(Projections.property("employee.titles"),"titles")
+						.add(Projections.property("salarios.amount"),"amount"))
 				.setResultTransformer(Transformers.aliasToBean(ElementosDeUnFiltro.class))
-			    .uniqueResult();
+				.list();
 	}
+
+
+	public List<ElementosDeOtroFiltro> getNumeroNombreYManagerDelDepto() {		
+		Session session = SessionManager.getSession();
+		return (List<ElementosDeOtroFiltro>) session.createCriteria(Department.class)
+				.setProjection( Projections.projectionList()
+				.add( Projections.property("number"),"nroDepto")
+				.add( Projections.property("name"), "nombreDepto" ))			
+				.setResultTransformer(Transformers.aliasToBean(ElementosDeOtroFiltro.class)).list();
+	}
+
 
 }

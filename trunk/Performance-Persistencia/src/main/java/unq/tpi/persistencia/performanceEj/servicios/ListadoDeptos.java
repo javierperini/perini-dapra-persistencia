@@ -3,6 +3,7 @@ package unq.tpi.persistencia.performanceEj.servicios;
 import java.util.List;
 
 import unq.tpi.persistencia.performanceEj.daos.DepartmentDAO;
+import unq.tpi.persistencia.performanceEj.daos.ElementosDeOtroFiltro;
 import unq.tpi.persistencia.performanceEj.model.Department;
 
 public class ListadoDeptos extends AbstractListado {
@@ -14,14 +15,14 @@ public class ListadoDeptos extends AbstractListado {
 
 	@Override
 	protected void doListado() throws Exception {
-		List<Department> deptos = new DepartmentDAO().getAll();
+		List<ElementosDeOtroFiltro> numeroNombreYManagerDelDepto = new DepartmentDAO().getNumeroNombreYManagerDelDepto();
 		
 		this.addColumn("Codigo").addColumn("Nombre").addColumn("Manager").newLine();
 		
-		for(Department d: deptos){
-			addColumn(d.getNumber());
-			addColumn(d.getName());
-			addColumn(d.getManager().getFullName());
+		for(ElementosDeOtroFiltro e: numeroNombreYManagerDelDepto){
+			addColumn(e.getNroDepto());
+			addColumn(e.getNombreDepto());
+			//addColumn(e.getNombreManager());
 			newLine();
 		}
 	}
