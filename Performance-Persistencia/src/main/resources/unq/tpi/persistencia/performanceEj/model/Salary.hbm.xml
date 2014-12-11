@@ -6,6 +6,8 @@
 	<class name="unq.tpi.persistencia.performanceEj.model.Salary"
 		table="salaries">
 		
+		<cache usage="read-write"/>
+		
 		<composite-id>
 			<key-many-to-one name="employee" column="emp_no">
 			</key-many-to-one>
