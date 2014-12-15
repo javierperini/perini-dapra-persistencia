@@ -1,19 +1,29 @@
 package mongoDB.TP6Comentarios.MongoConexion;
 
-import java.awt.List;
 import java.util.ArrayList;
+
+import net.vz.mongodb.jackson.ObjectId;
+
+import org.codehaus.jackson.annotate.JsonBackReference;
+import org.codehaus.jackson.annotate.JsonProperty;
 
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCollection;
 import com.mongodb.DBObject;
 
-public class Usuario extends BasicDBObject {
-
+public class Usuario  {
+	
+	@ObjectId
+	@JsonProperty("_id")
+	private String id;
+	@JsonBackReference
 	private ArrayList<Pais> misViajes;
 	private String nombre;
 	private ArrayList<Usuario> amigos;
 	private Perfil perfil;
-
+	
+	public Usuario() {
+	}
 	public Usuario(String nombre) {
 		this.nombre = nombre;
 		this.misViajes = new ArrayList<Pais>();
@@ -39,12 +49,13 @@ public class Usuario extends BasicDBObject {
 
 	public void setPerfil(Perfil perfil) {
 		this.perfil = perfil;
+		
 	}
 
 	public String getNombre() {
 		return nombre;
 	}
-
+//
 	public ArrayList<Usuario> getAmigos() {
 		return amigos;
 	}
