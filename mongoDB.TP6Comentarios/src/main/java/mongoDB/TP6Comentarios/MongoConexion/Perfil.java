@@ -1,16 +1,22 @@
 package mongoDB.TP6Comentarios.MongoConexion;
 
-import com.mongodb.BasicDBObject;
+import net.vz.mongodb.jackson.ObjectId;
 
-public class Perfil extends BasicDBObject {
+import org.codehaus.jackson.annotate.JsonProperty;
+
+
+
+public class Perfil {
 	private PerfilState estadoDePerfil;
 	private Usuario usuario;
-	
+	@ObjectId
+	@JsonProperty("_id")
+	private String id;
 	public Perfil(Usuario usuario){
-		this.usuario = usuario;
-		this.estadoDePerfil = new PerfilStatePublico(this); 
+		this.estadoDePerfil = new PerfilStatePublico(this);
+		this.usuario= usuario;
 	}
-	
+
 	public Perfil verPerfil(Usuario usuario) throws PerfilNoVisibleException{
 		return this.estadoDePerfil.verPerfil(usuario);
 	}
@@ -55,8 +61,6 @@ public class Perfil extends BasicDBObject {
 			throw new NoViajasteAEstePaisException("No podes dar me gusta donde no viajaste");
 		}
 	}
-	
-	
 	
 	
 	public void cambiarPrivacidadAPrivado(){

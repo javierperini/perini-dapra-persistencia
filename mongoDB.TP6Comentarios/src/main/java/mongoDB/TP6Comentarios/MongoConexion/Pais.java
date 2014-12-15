@@ -1,12 +1,31 @@
 package mongoDB.TP6Comentarios.MongoConexion;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-import com.mongodb.BasicDBObject;
+import net.vz.mongodb.jackson.ObjectId;
 
-public class Pais extends BasicDBObject{
+import org.codehaus.jackson.annotate.JsonProperty;
 
+public class Pais implements Serializable  {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@ObjectId
+	@JsonProperty("_id")
+	private String id;
 	private String nombre;
+	private int meGusta;
+	private int noMeGusta;
+	private ArrayList<String> comentarios;
+
+	public Pais(String nombre){
+		this.nombre = nombre;
+		this.meGusta = 0;
+		this.noMeGusta = 0;
+		this.comentarios = new ArrayList<String>();
+	}
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
@@ -22,18 +41,7 @@ public class Pais extends BasicDBObject{
 	public void setComentarios(ArrayList<String> comentarios) {
 		this.comentarios = comentarios;
 	}
-
-	private int meGusta;
-	private int noMeGusta;
-	private ArrayList<String> comentarios;
-
-	public Pais(String nombre) {
-		this.nombre = nombre;
-		this.meGusta = 0;
-		this.noMeGusta = 0;
-		this.comentarios = new ArrayList<String>();
-	}
-
+	
 	public String getNombre() {
 		return nombre;
 	}
