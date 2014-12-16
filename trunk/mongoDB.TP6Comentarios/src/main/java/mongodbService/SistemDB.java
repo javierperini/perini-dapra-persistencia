@@ -30,10 +30,10 @@ public class SistemDB {
 	}
 	
 	
-	public <T> DBCollection collection(Class<T> entityType){
-//		DBCollection dbCollection = db.getCollection(entityType.getSimpleName());
-//		return new Collection<T>(JacksonDBCollection.wrap(dbCollection, entityType, String.class));
-		return  db.getCollection(entityType.getSimpleName());
+	public <T> Collection<T> collection(Class<T> entityType){
+		DBCollection dbCollection = db.getCollection(entityType.getSimpleName());
+		return new Collection<T>(JacksonDBCollection.wrap(dbCollection, entityType, String.class));
+//		return  db.getCollection(entityType.getSimpleName());
 	}
 
 }

@@ -4,27 +4,29 @@ import java.util.Arrays;
 import java.util.List;
 
 import mongoDB.TP6Comentarios.MongoConexion.Pais;
-import mongoDB.TP6Comentarios.MongoConexion.Usuario;
+import mongoDB.TP6Comentarios.MongoConexion.Perfil;
+import mongoDB.TP6Comentarios.MongoConexion.PerfilStatePublico;
+import mongodbService.Collection;
 import mongodbService.SistemDB;
-
-import com.mongodb.DBCollection;
 
 
 public class InsertExample {
 	
 	public static void main(String[] args){
-		Usuario hongo = new Usuario("Hongo");
-		hongo.crearPerfil();
-		List<Usuario> amigos = Arrays.asList(new Usuario("Pepe"), new Usuario("Juan"), new Usuario("Cosme"));
-		List<Pais> paises = Arrays.asList(new Pais("Uruguay"),new Pais("Argentina"),new Pais("Brasil"));
-		for ( Usuario u : amigos){
-			hongo.agregarAmigo(u);
+		List<Pais> paises = Arrays.asList(new Pais("Argentina"),new Pais("Brasil"));
+		List<String> amigos = Arrays.asList("Mario", "Brasil");
+		Perfil perfil= new Perfil("Pepe");
+		PerfilStatePublico pp = new PerfilStatePublico(perfil);
+		perfil.setEstadoDePerfil(pp);
+		
+		for ( String u : amigos){
+			perfil.agregarAmigo(u);
 		}
 		for ( Pais p : paises){
-			hongo.viajarA(p);
+			perfil.viajarA(p);
 		}
-		DBCollection home = SistemDB.instance().collection(Usuario.class);
-		hongo.crearObjectDb( home);
+		Collection<Perfil> home = SistemDB.instance().collection(Perfil.class);
+		home.insert(perfil);
 	}
 
 }
