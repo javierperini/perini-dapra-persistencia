@@ -1,20 +1,29 @@
 package mongoDB.TP6Comentarios.MongoConexion;
 
-import net.vz.mongodb.jackson.ObjectId;
+import java.io.Serializable;
 
-import org.codehaus.jackson.annotate.JsonProperty;
+import org.codehaus.jackson.annotate.JsonIgnore;
+import org.codehaus.jackson.annotate.JsonSubTypes;
+import org.codehaus.jackson.annotate.JsonSubTypes.Type;
+import org.codehaus.jackson.annotate.JsonTypeInfo;
+import org.codehaus.jackson.annotate.JsonTypeInfo.As;
 
-import com.mongodb.BasicDBObject;
+@JsonSubTypes({ 
+	@Type(value = PerfilStatePrivado.class, name = "privado"),
+	@Type(value = PerfilStatePublico.class, name = "publico"),
+	@Type(value = PerfilStateSoloAmigos.class, name = "amigos")
+})
+@JsonTypeInfo(use = JsonTypeInfo.Id.CLASS, include = As.PROPERTY, property = "@class")
+public abstract class PerfilState implements Serializable{
 
-public abstract class PerfilState extends BasicDBObject {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	@ObjectId
-	@JsonProperty("_id")
-	private String id;
+	
+	@JsonIgnore
 	protected Perfil perfil;
+	
+	public PerfilState() {
+		
+	}
+
 	
 	public Perfil getPerfil() {
 		return perfil;
@@ -28,6 +37,6 @@ public abstract class PerfilState extends BasicDBObject {
 		this.perfil = perfil;
 	}
 	
-	public abstract Perfil verPerfil(Usuario usuario)throws PerfilNoVisibleException ;
+	public abstract Perfil verPerfil(Perfil usuario)throws PerfilNoVisibleException ;
 	
 }
